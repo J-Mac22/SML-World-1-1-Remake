@@ -17,27 +17,27 @@ CLASS for Items
 
 #include "sml_mario.h"
 
-class SML_Mario;
+class Mario;
 
-class SML_Items {
+class Items {
 
 protected:
 //Information about the sprite
-const bn::sprite_item& _body_sprite_item;
-bn::sprite_ptr _item_sprite_ptr;
+const bn::sprite_item& _body_item;
+bn::sprite_ptr _item_ptr;
 bn::sprite_cached_animate_action<2> _animate_action;
 bn::fixed_point _position;
-std::string _name;
 bn::fixed_size _dimensions;
-
+//std::string _name; 
+ 
 public:
 
 /**
  NAME:
- SML_Items
+ Items
  
  SYNOPSIS:
- SML_Items::SML_Items(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY, std::string name);
+ Items::Items(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY, std::string name);
  sprite_item -> The sprite for the item
  positionX  -> Sprite X position
  positionY  -> Sprite Y position
@@ -53,14 +53,14 @@ public:
  None
  */
 
-SML_Items(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY, std::string name);
+Items(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY);
 
 /**
  NAME:
- ~SML_Items
+ ~Items
 
  SYNOPSIS:
- virtual SML_Items::~SML_Items();
+ virtual Items::~Items();
 
  DESCRIPTION:
  Will call upon the virtual destructor for items.
@@ -72,14 +72,14 @@ SML_Items(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY,
  None
  */
  
-virtual ~SML_Items() = default;
+virtual ~Items() = default;
 
 /**
   NAME:
   make_item_sprite
  
   SYNOPSIS:
-  bn::sprite_ptr SML_Item::make_item_sprite (bn::sprite_item item, bn::fixed xPosition, bn::fixed yPosition);
+  bn::sprite_ptr Items::make_item_sprite (bn::sprite_item item, bn::fixed xPosition, bn::fixed yPosition);
   item -> The body item for the sprite
   xPosition -> Sprite X position
   yPosition -> Sprite Y position
@@ -91,36 +91,14 @@ virtual ~SML_Items() = default;
   bn::sprite_ptr 
  */
 
-bn::sprite_ptr make_item_sprite (bn::sprite_item item, bn::fixed positionX, bn::fixed positionY);
-
-/**
- NAME:
- make_item_dimensions
- 
- SYNOPSIS:
- bn::fixed_size SML_Items::make_item_dimensions(bn::fixed len, bn::fixed wid);
- len -> Length of sprite
- wid -> Width of sprite
-
- DESCRIPTION:
- A helper function that will define the dimensions for each item.
- This could be used for help with collision detection later.
-
- AUTHOR:
- Jack Machiaverna
-
- RETURNS:
- bn::fixed_size 
- */
-
-bn::fixed_size make_item_dimensions(bn::fixed length, bn::fixed width);
+bn::sprite_ptr make_item_sprite (bn::sprite_item _item, bn::fixed posX, bn::fixed posY);
 
 /**
  NAME:
  make_item_animation
 
  SYNOPSIS:
- bn::sprite_cached_animate_action<2> SML_Items::_make_item_animation();
+ bn::sprite_cached_animate_action<2> Items::_make_item_animation();
 
  DESCRIPTION:
  A helper function that will create an animation for the item.
@@ -133,6 +111,28 @@ bn::fixed_size make_item_dimensions(bn::fixed length, bn::fixed width);
  */
 
 bn::sprite_cached_animate_action<2> _make_item_animation();
+
+/**
+ NAME:
+ make_item_dims
+ 
+ SYNOPSIS:
+ bn::fixed_size Items::make_item_dims(bn::fixed length, bn::fixed width);
+ length -> Length of sprite
+ width -> Width of sprite
+
+ DESCRIPTION:
+ A helper function that will define the dimensions for each item.
+ This could be used for help with collision detection later.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::fixed_size 
+ */
+
+bn::fixed_size make_item_dims(bn::fixed length, bn::fixed width);
 
 /**
  NAME:
@@ -171,15 +171,15 @@ bn::fixed_rect make_hitbox();
  std::string
  */
 
-std::string getName() { return _name; }
+//std::string getName() { return _name; }
 
 /**
  NAME:
  update
  
  SYNOPSIS:
- virtual bool update(SML_Mario &);
- SML_Mario & -> A reference to the Mario object
+ virtual bool update(Mario &);
+ Mario & -> A reference to the Mario object
 
  DESCRIPTION:
  A virtual function that will update the item.
@@ -193,7 +193,7 @@ std::string getName() { return _name; }
  bool
  */
 
-virtual bool update(SML_Mario &) { return false; }
+virtual bool update(Mario &) { return false; }
 
 };
 

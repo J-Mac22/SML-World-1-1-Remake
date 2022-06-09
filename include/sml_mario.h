@@ -20,12 +20,16 @@ CLASS for Mario
 #include "bn_sprite_items_mario.h"
 #include "sml_mario_states.h"
 #include "sml_enemies.h"
+
+ class Superball;
  
- class SML_Mario {
+ class Mario {
+
+     //My friend helped me with structuring the private for this class
 
      private:
      //Information about body
-     SML_Mario_States _mstates;
+     Mario_States _mstates;
      bn::sprite_item _body_sprite_item;
      bn::sprite_ptr _mario;
      bn::sprite_cached_animate_action<4> _animate_action;
@@ -34,29 +38,29 @@ CLASS for Mario
      bn::fixed_point _position;
      bn::fixed_size _dimensions;
 
-     //For Mario's gravity
-     const bn::fixed HIGH_GRAVITY = 6.0;
-     bn::fixed gravity = HIGH_GRAVITY;
-
      //For Mario's current speed
      bn::fixed moveTemp = 0;
 
      //For Mario's current level
      int _level = 0;
 
+     //For Mario's gravity
+     const bn::fixed TOP_GRAV = 6.0;
+     bn::fixed gravity = TOP_GRAV;
+
+      //Collision wait frames
+     const int JUMP_WAIT_FRAMES = 10;
+     int _currJumpWaitFrames = JUMP_WAIT_FRAMES;
+     const int MOVE_WAIT_FRAMES = 10;
+     int _currMoveWaitFrames = MOVE_WAIT_FRAMES;
+
      //For Mario's X position
      bn::fixed currentX = 0;
 
      //Other stats will go down here
 
-     bool _invincible = false;
-     bool _death = false;
-
-     //Collision wait frames
-     const int JUMPING_WAIT_FRAMES = 10;
-     int _currJumpWaitFrames = JUMPING_WAIT_FRAMES;
-     const int MOVING_WAIT_FRAMES = 10;
-     int _currMoveWaitFrames = MOVING_WAIT_FRAMES;
+     bool _invincibility = false;
+     bool _die = false;
 
      //Frames for invincibility
      int _inFrames = 0;
@@ -65,10 +69,10 @@ CLASS for Mario
 
     /**
      NAME:
-     SML_Mario
+     Mario
 
      SYNOPSIS:
-     SML_Mario::SML_Mario();
+     Mario::Mario();
 
      DESCRIPTION:
      Construct a new sml mario object
@@ -80,15 +84,14 @@ CLASS for Mario
      None
      
      */
-     SML_Mario();
-
+     Mario();
 
     /**
       NAME:
       make_mario_sprite
 
       SYNOPSIS:
-      bn::sprite_ptr SML_Mario::make_mario_sprite (const bn::sprite_item& body_sprite_item);
+      bn::sprite_ptr Mario::make_mario_sprite (const bn::sprite_item& body_sprite_item);
       body_sprite_item -> The body of Mario's sprite
 
       DESCRIPTION:
@@ -109,7 +112,7 @@ CLASS for Mario
        make_walk_animation
 
        SYNOPSIS:
-       bn::sprite_cached_animate_action<4> SML_Mario::make_walk_animation(bn::sprite_ptr mario_sprite,
+       bn::sprite_cached_animate_action<4> Mario::make_walk_animation(bn::sprite_ptr mario_sprite,
                                                                const bn::sprite_item& body_sprite_item);
         
        mario_sprite -> A pointer that relates to Mario's sprite
@@ -153,7 +156,7 @@ CLASS for Mario
        make_hitbox
 
        SYNOPSIS:
-       bn::fixed_rect SML_Mario::make_hitbox();
+       bn::fixed_rect Mario::make_hitbox();
 
        DESCRIPTION:
        A function that creates a hitbox for Mario, allowing him to make contact with enemies.
@@ -168,12 +171,13 @@ CLASS for Mario
  
      bn::fixed_rect make_hitbox();
 
+
     /**
       NAME:
       make_bottom
 
       SYNOPSIS:
-      bn::fixed_rect SML_Mario::make_bottom();
+      bn::fixed_rect Mario::make_bottom();
 
       DESCRIPTION:
       A function that will draw the bottom hitbox for Mario.
@@ -192,8 +196,8 @@ CLASS for Mario
       move
 
       SYNOPSIS:
-      void SML_Mario::move (bn::camera_ptr &camera, bool xCollide,
-                 bn::fixed_rect &collideRect, bn::fixed_rect &standingRect);
+      void Mario::move (bn::camera_ptr &camera, bool xCollide,
+                 bn::fixed_rect &collideRect, bn::fixed_rect &standRect);
 
       camera-> A pointer that relates to the camera
       xCollide-> Sees if collision detection is working or not
@@ -211,14 +215,35 @@ CLASS for Mario
       */
 
      void move (bn::camera_ptr &camera, bool xCollide,
-                 bn::fixed_rect &collideRect, bn::fixed_rect &standingRect);
+                 bn::fixed_rect &collideRect, bn::fixed_rect &standRect);
 
     /**
      NAME:
-     determine_enemy_encounter_result
+     jump
 
      SYNOPSIS:
-     void SML_Mario::determine_enemy_encounter_result(SML_Enemies* &enemy);
+     void Mario::jump(bool collide);
+
+     collide -> Determines if Mario makes contact while jumping
+
+     DESCRIPTION:
+     A function that allows Mario to jump with input from the player.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
+    void jump(bool collide);
+
+    /**
+     NAME:
+     decide_enemy_encounter_outcome
+
+     SYNOPSIS:
+     void Mario::decide_enemy_encounter_outcome(Enemies* &enemy);
 
      enemy -> The type of enemy that Mario will encounter.
 
@@ -234,14 +259,55 @@ CLASS for Mario
      None
      */
 
-    //void SML_Mario::determine_enemy_encounter_result(SML_Enemies* &enemy);
+    //void decide_enemy_encounter_outcome(Enemies* &enemy); //remember this
 
+    /**
+     NAME:
+     move_next_to_star
+
+     SYNOPSIS:
+     void Mario::move_next_to_star(bn::fixed_point starPos);
+
+     starPos -> The position of the Power Star.
+
+     DESCRIPTION:
+     Will have Mario move next to the Power Star when it's collected.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
+    void move_next_to_star(bn::fixed_point starPos);
+
+    /**
+     NAME:
+     getSpeed
+
+     SYNOPSIS:
+     bn::fixed getSpeed();
+
+     DESCRIPTION:
+     Getter function that returns the movement of Mario's speed.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     bn::fixed
+     */
+
+    bn::fixed getSpeed() {return moveTemp;}
+
+     
     /**
      NAME:
      update
 
      SYNOPSIS:
-     void SML_Mario::update();
+     void SMario::update();
 
      DESCRIPTION:
      A function that will update Mario's animations and position.

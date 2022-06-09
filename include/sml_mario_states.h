@@ -7,7 +7,7 @@ CLASS for Mario's states
 
 #include "sml_mario.h"
  
-class SML_Mario_States {
+class Mario_States {
 
     private:
     enum stateEnums {
@@ -22,10 +22,10 @@ class SML_Mario_States {
     public:
     /**
      NAME:
-     SML_Mario_States
+     States
 
      SYNOPSIS:
-     SML_Mario_States();
+     Mario_States();
 
      DESCRIPTION:
      An empty constructor for Mario's state map.
@@ -37,17 +37,17 @@ class SML_Mario_States {
      None
     */
 
-    SML_Mario_States() {
+    Mario_States() {
       
 
     };
 
     /**
     NAME:
-    ~SML_Mario_States
+    ~Mario_States
 
     SYNOPSIS:
-    SML_Mario_States::~SML_Mario_States();
+    Mario_States::~Mario_States();
 
     DESCRIPTION:
     A virtual destructor used for Mario's states.
@@ -59,7 +59,7 @@ class SML_Mario_States {
      None
     */
 
-    virtual ~SML_Mario_States() = default;
+    virtual ~Mario_States() = default;
 
     /**
      NAME:

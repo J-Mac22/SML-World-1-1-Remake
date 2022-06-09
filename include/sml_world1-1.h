@@ -11,10 +11,11 @@ DERIVED CLASS for World 1-1
 #include "bn_regular_bg_ptr.h"
 //#include "bn_regular_bg_items_world1_1.h"
 #include "bn_fixed.h"
+#include "bn_vector.h"
 #include "bn_sprite_items_mario.h"
- 
 
-class SML_World_1_1 : public SML_Levels {
+ 
+class World_1_1 : public Levels {
 
 private:
 bn::fixed backX = 0;
@@ -24,10 +25,10 @@ public:
 
 /**
 NAME:
-SML_World_1_1
+World_1_1
 
 SYNOPSIS:
-SML_World_1_1::SML_World_1_1();
+World_1_1::World_1_1();
 
 DESCRIPTION:
 Will call upon the Levels constructor and then passes a background to it.
@@ -39,14 +40,14 @@ RETURNS:
 None
 */
   
-SML_World_1_1();
+World_1_1();
 
 /**
  NAME:
- ~SML_WORLD_1_1
+ ~WORLD_1_1
 
  SYNOPSIS:
- virtual SML_World_1_1::~SML_World_1_1()
+ virtual World_1_1::~World_1_1()
  
  DESCRIPTION:
  Will call upon the virtual destructor for World1_1.
@@ -58,15 +59,76 @@ SML_World_1_1();
  None
  */
 
-virtual ~SML_World_1_1() = default;
+virtual ~World_1_1() = default;
+
+/**
+ NAME:
+ adjust_rectangles
+
+ SYNOPSIS:
+ void Mario::adjust_rectangles(bn::vector<bn::fixed_rect, 100> &rectangles, Mario &mario);
+
+ DESCRIPTION:
+ This will adjust the invisible rectangles into a vector
+ with Mario's position in the level.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::vector <SML_Items*, 100>
+ */
+
+void adjust_rectangles(bn::vector<bn::fixed_rect, 100> &rectangles, Mario &mario);
+
+/**
+ NAME:
+ populateHitBoxes
+
+ SYNOPSIS:
+ bn::vector<bn::fixed_rect, 100> populateHitBoxes();
+
+ DESCRIPTION:
+ This will populate the level map with geometry hitboxes
+ so Mario will obtain damage when he makes contact with them.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::vector<bn::fixed_rect, 100>
+ */
+
+bn::vector<bn::fixed_rect, 100> populateHitBoxes();
+
+/**
+ NAME:
+ populateGeo
+
+ SYNOPSIS:
+ bn::vector<bn::fixed_rect, 100> World_1_1::populateGeo();
+
+ DESCRIPTION:
+ This will populate the level map with geometry hitboxes
+ so that Mario, the items, and the enemies that are not in place
+ won't clip through.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::vector<bn::fixed_rect, 100>
+ */
+
+bn::vector<bn::fixed_rect, 100> populateGeo();
 
 /**
  NAME:
  update
  
  SYNOPSIS:
- bool SML_World_1_1::update (SML_Mario &mario);
- mario -> A reference to the player
+ bool World_1_1::update (Mario &mario);
+ mario -> A reference to player
 
  DESCRIPTION:
  This function will update the current state of the level.
@@ -78,7 +140,7 @@ virtual ~SML_World_1_1() = default;
  A boolean for whether the level is complete or not.
  */
 
-bool update(SML_Mario &mario);
+bool update(Mario &mario);
 
 };
 

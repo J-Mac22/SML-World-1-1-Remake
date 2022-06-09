@@ -12,24 +12,24 @@ CLASS for Enemies
 #include "bn_sprite_animate_actions.h"
 #include "sml_mario.h"
 
-class SML_Enemies {
+class Enemies {
 
 protected:
-const bn::sprite_item& _body_sprite_item;
-bn::sprite_ptr _enemy_sprite_ptr;
+const bn::sprite_item& _body_item;
+bn::sprite_ptr _enemy_ptr;
 bn::sprite_cached_animate_action<2> _animate_action;
 bn::fixed_point _position;
 bn::fixed_size _dimensions;
-//std::string _name; //(Figure name issue out)
+//std::string _name; 
 
 public:
 
 /**
  NAME:
- SML_Enemies
+ Enemies
 
  SYNOPSIS:
- SML_Enemies::SML_Enemies(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY,
+ Enemies::Enemies(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY,
                           bn::fixed length, bn::fixed width, std::string name);
 
  sprite_item -> The sprite for the enemy
@@ -49,15 +49,15 @@ public:
  None
  */
 
- SML_Enemies(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY,
-                          bn::fixed length, bn::fixed width);
+ Enemies(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY,
+                          bn::fixed len, bn::fixed wid);
 
 /**
  NAME:
- make_enemy_dimensions
+ make_enemy_dims
 
  SYNOPSIS:
- bn::fixed_size SML_Enemies::make_enemy_dimensions(bn::fixed length, bn::fixed width);
+ bn::fixed_size Enemies::make_enemy_dims(bn::fixed length, bn::fixed width);
  length -> The length of the sprite's measurements
  width -> The width of the sprite's measurements
 
@@ -72,14 +72,33 @@ public:
 
  */
 
-bn::fixed_size make_enemy_dimensions(bn::fixed length, bn::fixed width);
+bn::fixed_size make_enemy_dims(bn::fixed length, bn::fixed width);
+
+/**
+ NAME:
+ make_enemy_animation
+
+ SYNOPSIS:
+ bn::sprite_cached_animate_action<2> Enemies::make_enemy_animation();
+
+ DESCRIPTION:
+ A function that will create a enemy's overall basic movement animations.
+
+ AUTHOR:
+ Jack Machiaverna 
+
+ RETURNS:
+ bn::create_sprite_cached_animate_action_forever
+ */
+
+bn::sprite_cached_animate_action<2> make_enemy_animation();
 
 /**
  NAME:
  make_enemy_sprite
 
  SYNOPSIS:
- bn::sprite_ptr SML_Enemies::make_enemy_sprite(bn::sprite_item item, bn::fixed positionX, bn::fixed positionY);
+ bn::sprite_ptr Enemies::make_enemy_sprite(bn::sprite_item item, bn::fixed positionX, bn::fixed positionY);
  item -> The sprite body item
  positionX -> The sprite's X position
  posiitonY -> The sprite's Y position
@@ -96,25 +115,6 @@ bn::fixed_size make_enemy_dimensions(bn::fixed length, bn::fixed width);
  */
 
 bn::sprite_ptr  make_enemy_sprite(bn::sprite_item item, bn::fixed positionX, bn::fixed positionY);
-
-/**
- NAME:
- make_enemy_animation
-
- SYNOPSIS:
- bn::sprite_cached_animate_action<2> SML_Enemies::make_enemy_animation();
-
- DESCRIPTION:
- A function that will create a enemy's overall basic movement animations.
-
- AUTHOR:
- Jack Machiaverna 
-
- RETURNS:
- bn::create_sprite_cached_animate_action_forever
- */
-
-bn::sprite_cached_animate_action<2> make_enemy_animation();
 
 /**
  NAME:
@@ -135,6 +135,25 @@ bn::sprite_cached_animate_action<2> make_enemy_animation();
  */
 
 bn::fixed_rect make_hitbox();
+
+/**
+ NAME:
+ make_tophitBox
+
+ SYNOPSIS:
+ bn::fixed_rect Enemies::make_tophitBox();
+
+ DESCRIPTION:
+ Function that creates the top hitbox for enemies.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::fixed_rect
+ */
+
+bn::fixed_rect make_tophitBox();
 
 /**
  NAME:

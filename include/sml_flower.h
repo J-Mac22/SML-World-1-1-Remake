@@ -9,15 +9,15 @@ DERIVED CLASS FOR SUPERBALL FLOWER
 #include "bn_sprite_items_superball_flower.h"
 #include "bn_fixed.h"
 
-class SML_Flower : public SML_Items {
+class Flower : public Items {
 
 public:
 /**
   NAME:
-  SML_Flower
+  Flower
 
   SYNOPSIS:
-  SML_Flower::SML_Flower();
+  Flower::Flower();
 
   DESCRIPTION:
   A constructor that will initialize the sprite, animation, and name of the Superball Flower.
@@ -29,14 +29,14 @@ public:
   None
  */
 
-  SML_Flower(bn::fixed positionX, bn::fixed positionY);
+  Flower(bn::fixed positionX, bn::fixed positionY);
 
 /**
    NAME:
-   ~SML_Flower
+   ~Flower
 
    SYNOPSIS:
-   virtual SML_Flower::~SML_Flower();
+   virtual Flower::~Flower();
 
    DESCRIPTION:
    A virtual destructor for the Superball Flower.
@@ -48,14 +48,14 @@ public:
    None
 */
 
-   virtual ~SML_Flower() = default;
+   virtual ~Flower() = default;
 
 /**
    NAME:
    update
 
    SYNOPSIS:
-   bool SML_Flower::update(SML_Mario &mario);
+   bool Flower::update(Mario &mario);
 
    DESCRIPTION:
    This function will update both the Superball Flower's 
@@ -69,7 +69,7 @@ public:
    bool
  */
 
-   bool update(SML_Mario &mario);
+   bool update(Mario &mario);
 
 }
 

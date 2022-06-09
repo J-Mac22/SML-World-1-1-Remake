@@ -9,16 +9,16 @@ DERIVED CLASS FOR MUSHROOM
 #include "bn_fixed.h"
 #include "sml_items.h"
 
-class SML_Mushroom : public SML_Items {
+class Mushroom : public Items {
 
     public:
 
         /**
          NAME:
-         SML_Mushroom
+         Mushroom
 
          SYNOPSIS:
-         SML_Mushroom::SML_Mushroom(bn::fixed positionX, bn::fixed positionY)
+         Mushroom::Mushroom(bn::fixed positionX, bn::fixed positionY)
 
          DESCRIPTION:
          A constructor that initializes the mushroom's sprite, animation, and name.
@@ -30,14 +30,14 @@ class SML_Mushroom : public SML_Items {
          None
         */
 
-        SML_Mushroom(bn::fixed positionX, bn::fixed positionY);
+        Mushroom(bn::fixed positionX, bn::fixed positionY);
 
         /**
          NAME:
-         ~SML_Mushroom
+         ~Mushroom
 
          SYNOPSIS:
-         virtual SML_Mushroom::~SML_Mushroom()
+         virtual Mushroom::~Mushroom()
 
          DESCRIPTION:
          A virtual destructor for the mushroom.
@@ -49,14 +49,14 @@ class SML_Mushroom : public SML_Items {
          None
         */
 
-        virtual ~SML_Mushroom() = default;
+        virtual ~Mushroom() = default;
 
         /**
          NAME:
          update
 
          SYNOPSIS:
-         bool SML_Mushroom::update(SML_Mario &mario);
+         bool Mushroom::update(Mario &mario);
 
          DESCRIPTION:
          Update the mushroom's animation and position.
@@ -70,7 +70,7 @@ class SML_Mushroom : public SML_Items {
          bool
        */
 
-      bool update(SML_Mario &mario);
+      bool update(Mario &mario);
 
 };
 

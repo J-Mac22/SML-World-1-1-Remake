@@ -9,15 +9,15 @@ DERIVED CLASS FOR GOOMBA
 #include "bn_fixed.h"
 #include "sml_enemies.h"
 
-class SML_Goomba : public SML_Enemies {
+class Goomba : public Enemies {
 
     public:
     /**
      NAME:
-     SML_Goomba
+     Goomba
 
      SYNOPSIS:
-     SML_Goomba::SML_Goomba(bn::fixed positionX, bn::fixed positionY);
+     Goomba::Goomba(bn::fixed positionX, bn::fixed positionY);
 
      DESCRIPTION:
      A constructor that initializes the Goomba's sprite, animation, and name.
@@ -29,14 +29,14 @@ class SML_Goomba : public SML_Enemies {
      None
     */
 
-    SML_Goomba(bn::fixed positionX, bn::fixed positionY);
+    Goomba(bn::fixed positionX, bn::fixed positionY);
 
     /**
      NAME:
-     ~SML_Goomba
+     ~Goomba
 
      SYNOPSIS:
-     virtual SML_Goomba::~SML_Goomba();
+     virtual Goomba::~Goomba();
 
      DESCRIPTION:
      A destructor that will destroy the Goomba object after it has been defeated by Mario.
@@ -48,14 +48,14 @@ class SML_Goomba : public SML_Enemies {
      None
     */
 
-    virtual ~SML_Goomba() = default;
+    virtual ~Goomba() = default;
 
     /**
      NAME:
      update
 
      SYNOPSIS:
-     bool SML_Goomba::update(SML_Mario &mario);
+     bool Goomba::update(Mario &mario);
 
      DESCRIPTION:
      Update the Goomba's animation and position.
@@ -69,7 +69,7 @@ class SML_Goomba : public SML_Enemies {
      bool
     */
 
-   bool update(SML_Mario &mario);
+   bool update(Mario &mario);
 
 };
 #endif

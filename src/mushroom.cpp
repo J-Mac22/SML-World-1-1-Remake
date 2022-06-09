@@ -12,10 +12,29 @@ CPP for Mushroom
 #include "bn_sound_items.h"
 
 //Constructor for mushroom
-SML_Mushroom::SML_Mushroom(bn::fixed positionX, bn::fixed positionY) :
-SML_Items(bn::sprite_items::mushroom, positionX, positionY, "mushroom")
+
+Mushroom::Mushroom(bn::fixed positionX, bn::fixed positionY) :
+Items(bn::sprite_items::mushroom, positionX, positionY)
 {}
 
 
 
 
+//Updating the mushroom
+bool Mushroom::update(Mario &mario) {
+
+//Have the item's animation be continually updated
+_animate_action.update();
+
+//Have Butano draw rectangles to check collision
+bn::fixed_rect bodyRectangles(_position, _dimensions);
+bn::fixed_rect marioHitbox = mario.make_hitbox();
+
+//Have Mario's collision be checked
+if (bodyRectangles.intersects(marioHitbox)) {
+
+//WIP
+
+}
+
+}

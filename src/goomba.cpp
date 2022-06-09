@@ -11,11 +11,24 @@ CPP for Goomba
 #include "bn_keypad.h"
 
 //Constructor for Goomba
-SML_Goomba::SML_Goomba(bn::fixed positionX, bn::fixed positionY) :
-SML_Enemies(bn::sprite_items::goomba, positionX, positionY, 16, 16)
+Goomba::Goomba(bn::fixed positionX, bn::fixed positionY) :
+Enemies(bn::sprite_items::goomba, positionX, positionY, 16, 16)
 {}
 
+
+/*
 //For updating the Goomba
-//bool SML_Goomba::update(SML_Mario &mario);
+bool Goomba::update(Mario &mario) {
+
+//Have the position become synchronized
+bn::fixed moveTemp = mario.getSpeed();
+//bool walk = mario.isWalking();
+
+
+
+
+
+};
+*/
 
 //Will put more functions once I figure states out

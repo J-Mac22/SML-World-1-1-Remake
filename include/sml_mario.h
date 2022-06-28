@@ -19,13 +19,11 @@ CLASS for Mario
 
 #include "bn_sprite_items_mario.h"
 #include "sml_mario_states.h"
-#include "sml_enemies.h"
+ 
 
  class Superball;
  
  class Mario {
-
-     //My friend helped me with structuring the private for this class
 
      private:
      //Information about body
@@ -61,6 +59,9 @@ CLASS for Mario
 
      bool _invincibility = false;
      bool _die = false;
+
+     //Losing a life
+     bool _lostLife = false; //(WIP)
 
      //Frames for invincibility
      int _inFrames = 0;
@@ -133,12 +134,17 @@ CLASS for Mario
      bn::sprite_cached_animate_action<4> make_walk_animation(bn::sprite_ptr mario_sprite,
                                                                const bn::sprite_item& body_sprite_item);
 
+    //Check
      /**
         NAME:
         make_jump_animation
 
         SYNOPSIS:
-        WIP
+        bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
+                                                                  const bn::sprite_item& body_sprite_item);
+
+        mario_sprite -> A pointer that relates to Mario's sprite
+        body_sprite_item -> The body of Mario's sprite
 
         DESCRIPTION:
         A function that will create Mario's jumping animation, allowing him to go up and then go down.
@@ -147,10 +153,12 @@ CLASS for Mario
         Jack Machiaverna
 
         RETURNS:
-        WIP
-
+        bn::create_sprite_cached_animate_action_forever
       */
+        bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
+                                                                  const bn::sprite_item& body_sprite_item);
 
+     
     /**
        NAME:
        make_hitbox
@@ -171,6 +179,24 @@ CLASS for Mario
  
      bn::fixed_rect make_hitbox();
 
+     /**
+      NAME:
+      make_top
+
+      SYNOPSIS:
+      bn::fixed_rect Mario::make_top();
+
+      DESCRIPTION:
+      A function that will draw the top hitbox for Mario.
+
+      AUTHOR:
+      Jack Machiaverna
+
+      RETURNS:
+      bn::fixed_rect
+      */
+
+     bn::fixed_rect make_top();
 
     /**
       NAME:
@@ -186,7 +212,7 @@ CLASS for Mario
       Jack Machiaverna
 
       RETURNS:
-      WIP
+      bn::fixed_rect
      */
 
      bn::fixed_rect make_bottom();
@@ -259,7 +285,7 @@ CLASS for Mario
      None
      */
 
-    //void decide_enemy_encounter_outcome(Enemies* &enemy); //remember this
+    //void decide_enemy_encounter_outcome(Enemies* enemies); //remember this
 
     /**
      NAME:
@@ -301,13 +327,95 @@ CLASS for Mario
 
     bn::fixed getSpeed() {return moveTemp;}
 
-     
+    /**
+     NAME:
+     change_item_sprites
+
+     SYNOPSIS:
+     void Mario::change_item_sprites(Items* &item);
+     item -> The item to have its' sprite changed.
+
+     DESCRIPTION:
+     Will read what powerup Mario has once he
+     makes contact with an item.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
+    //void change_item_sprites(Items* &item); //WIP
+
+    /**
+     NAME:
+     change_level_sprites
+
+     SYNOPSIS:
+     void Mario::change_level_sprites();
+
+     DESCRIPTION:
+     Will read Mario's transformation once he
+     obtains an item.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
+    void change_level_sprites();
+
+  //Make getWalk and getMove functions for tomorrow
+
+  //Check
+  /**
+   NAME:
+   getWalk
+
+   SYNOPSIS:
+   bool Mario::getWalk();
+
+   DESCRIPTION:
+   Getter function to get Mario walking.
+
+   AUTHOR:
+   Jack Machiaverna
+
+   RETURNS:
+   bool
+   */
+
+  //bool getWalk() {return mario.getWalking()};
+
+   /**
+    NAME:
+    getMove
+
+    SYNOPSIS:
+    bool Mario::getMove();
+
+    DESCRIPTION:
+    Getter function to get Mario fully moving.
+
+    AUTHOR:
+    Jack Machiaverna
+
+    RETURNS:
+    bool
+    */
+
+    bool getMove() {return _moving;};
+
+
     /**
      NAME:
      update
 
      SYNOPSIS:
-     void SMario::update();
+     void Mario::update();
 
      DESCRIPTION:
      A function that will update Mario's animations and position.

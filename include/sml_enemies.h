@@ -54,6 +54,25 @@ public:
 
 /**
  NAME:
+ ~Enemies
+
+ SYNOPSIS:
+ virtual Enemies::~Enemies();
+
+ DESCRIPTION:
+ Will call upon the virtual destructor for enemies.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bool
+ */
+
+virtual ~Enemies() = default;
+
+/**
+ NAME:
  make_enemy_dims
 
  SYNOPSIS:
@@ -153,7 +172,7 @@ bn::fixed_rect make_hitbox();
  bn::fixed_rect
  */
 
-bn::fixed_rect make_tophitBox();
+bn::fixed_rect make_topHitBox();
 
 /**
  NAME:
@@ -173,6 +192,28 @@ bn::fixed_rect make_tophitBox();
  */
 
 //std::string getName() { return _name; }
+
+/**
+ NAME:
+ update
+
+ SYNOPSIS:
+ virtual bool update(Mario &);
+ Mario & -> A reference to the Mario object
+
+ DESCRIPTION:
+ A virtual function that will update the enemy.
+ This will also return whether the enemy should be
+ deleted or not.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bool
+ */
+
+virtual bool update(Mario &) { return false; };
 
 };
 

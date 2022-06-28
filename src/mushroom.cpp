@@ -12,13 +12,9 @@ CPP for Mushroom
 #include "bn_sound_items.h"
 
 //Constructor for mushroom
-
 Mushroom::Mushroom(bn::fixed positionX, bn::fixed positionY) :
 Items(bn::sprite_items::mushroom, positionX, positionY)
 {}
-
-
-
 
 //Updating the mushroom
 bool Mushroom::update(Mario &mario) {

@@ -71,6 +71,6 @@ public:
 
    bool update(Mario &mario);
 
-}
+};
 
 #endif

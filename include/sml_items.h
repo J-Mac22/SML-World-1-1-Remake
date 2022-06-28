@@ -193,7 +193,7 @@ bn::fixed_rect make_hitbox();
  bool
  */
 
-virtual bool update(Mario &) { return false; }
+virtual bool update(Mario &) { return false; };
 
 };
 

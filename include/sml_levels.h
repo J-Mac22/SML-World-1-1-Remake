@@ -13,6 +13,8 @@ CLASS for Level
 #include "sml_items.h"
 #include "sml_enemies.h"
 #include "sml_blocks.h"
+#include "sml_power_star.h"
+#include "sml_superball.h"
 #include "bn_vector.h"
 
 class Mario;
@@ -21,27 +23,33 @@ class Level {
 
 protected:
 
+//Background for the level
+bn::regular_bg_ptr _background;
+
 //Parts of the level
-bn::vector<bn::fixed_rect, 100> _levelRectangles;
 bn::vector <Items*, 100> _itemEvents;
 bn::vector<Enemies*, 100> _enemyEvents;
+bn::vector<bn::fixed_rect, 100> _levelRectangles;
 bn::vector<bn::fixed_rect, 5> _levelHurtBox; 
-bn::vector<Blocks, 12> _block; //change number after watching gameplay
+bn::vector<Blocks, 21> _block; //change number after watching gameplay
 
 //Camera for the level
 bn::camera_ptr _camera;
 
-//Background for the level
-bn::regular_bg_ptr _background;
+//Will hold a superball temporarily
+bn::vector<Superball, 1> _superball;
+
+//Power Star collectible
+Power_Star _star;
 
 public:
 
 /**
  NAME:
- SML_Level()
+ Level()
 
  SYNOPSIS:
- SML_Level::SML_Level (bn::regular_bg_ptr backPicture, bn::vector<SML_Items*, 100> items, bn::vector<SML_Enemies*, 100> enemies,
+ Level::Level (bn::regular_bg_ptr backPicture, bn::vector<SML_Items*, 100> items, bn::vector<SML_Enemies*, 100> enemies,
  bn::vector<bn::fixed_rect, 100> levelRectangles, bn::vector<bn::fixed_rect, 50> hurtBox, bn::vector<SML_Blocks, 12> levelBlocks,
  bn::fixed cameraX, bn::fixed cameraY);
  backPicture -> The image used for the background.
@@ -59,16 +67,17 @@ public:
  */
 
 Level(bn::regular_bg_ptr backPicture, bn::vector<Items*, 100> items, bn::vector<Enemies*, 100> enemies,
-bn::vector<bn::fixed_rect, 100> levelRectangles, bn::vector<bn::fixed_rect, 5> hurtBox, bn::vector<Blocks, 12> levelBlocks,
-bn::fixed cameraX, bn::fixed cameraY) :
+bn::vector<bn::fixed_rect, 100> levelRectangles, bn::vector<bn::fixed_rect, 5> hurtBox, bn::vector<Blocks, 21> levelBlocks,
+Power_Star star, bn::fixed cameraX, bn::fixed cameraY) :
 
     _background(backPicture),
-    _camera(bn::camera_ptr::create(cameraX, cameraY)),
     _itemEvents(items),
     _enemyEvents(enemies),
     _levelRectangles(levelRectangles),
     _levelHurtBox(hurtBox),
-    _block(levelBlocks)
+    _block(levelBlocks),
+    _camera(bn::camera_ptr::create(cameraX, cameraY)),
+    _star(star)
 
 {
     //Add collision boxes later (if statement) (maybe hurtboxes?)
@@ -80,18 +89,21 @@ bn::fixed cameraX, bn::fixed cameraY) :
 
     for(int i = 0; i < _levelHurtBox.size(); i++) {
 
-    _levelRectangles.push_back(_levelHurtbox[i]);
+   //_levelRectangles.push_back(_levelHurtbox[i]);
 
     }
+
+    //Set the camera
+    _background.set_camera(_camera);
 
 }
 
 /**
  NAME:
- ~SML_Level
+ ~Level
 
  SYNOPSIS:
- virtual SML_Level::~SML_Level();
+ virtual Level::~Level();
 
  DESCRIPTION:
  Will call upon the virtual destructor for the level.
@@ -103,14 +115,14 @@ bn::fixed cameraX, bn::fixed cameraY) :
  None
  */
 
-virtual ~SML_Level() = default;
+virtual ~Level() = default;
 
 /**
  NAME:
  placeEnemies
 
  SYNOPSIS:
- virtual void SML_Level::placeEnemies();
+ virtual void Level::placeEnemies();
 
  DESCRIPTION:
  This function will populate the level map with
@@ -130,7 +142,7 @@ virtual void placeEnemies() {}
  update
 
  SYNOPSIS:
- virtual int SML_Levels::update(SML_Mario &mario);
+ virtual int Levels::update(Mario &mario);
 
  DESCRIPTION:
  Updates the level and determines whether or not
@@ -143,7 +155,7 @@ virtual void placeEnemies() {}
  0
  */
 
-virtual int update (SML_Mario &mario) { return 0; }
+virtual bool update (Mario &mario) { return false; } //Placeholder
 
 };
 

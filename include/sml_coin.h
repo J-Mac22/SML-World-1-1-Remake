@@ -5,19 +5,11 @@ CLASS for Coin
 #ifndef SML_COIN_H
 #define SML_COIN_H
 
+#include "sml_items.h"
 #include "bn_sprite_items_coin.h"
-#include "bn_sound_item.h"
-#include "bn_music_item.h"
-#include "bn_music_actions.h"
-#include "bn_sprite_animate_actions.h"
+#include "bn_fixed.h"
 
-#include "bn_fixed_rect.h"
-#include "bn_fixed_point.h"
-#include "bn_fixed_size.h"
-
-#include "sml_mario.h"
-
-class Coin {
+class Coin : public Items {
 
 public:
 
@@ -38,7 +30,7 @@ public:
  None
  */
 
-Coin();
+Coin(bn::fixed positionX, bn::fixed positionY);
 
 /**
  NAME:

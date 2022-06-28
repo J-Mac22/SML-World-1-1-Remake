@@ -37,6 +37,17 @@ return bn::create_sprite_cached_animate_action_forever(
 
 }
 
+//Mario jumping animation
+bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
+                                                                  const bn::sprite_item& body_sprite)
+{
+
+return bn::create_sprite_cached_animate_action_forever( 
+    mario_sprite, 3.2, body_sprite.tiles_item(), 0, 4, 0);
+
+
+}
+
 //Have Mario move next to the Power Star upon collecting
 void Mario::move_next_to_star(bn::fixed_point starPos) {
 
@@ -80,13 +91,21 @@ return hitbox;
 
 }
 
+//Top hit-box for Mario
+bn::fixed_rect Mario::make_top() {
+
+bn::fixed_rect spriteTop(bn::fixed_point(_position.x(), make_hitbox().top() - 15), bn::fixed_size(16, 16));
+return spriteTop;
+
+}
+
 //Bottom hit-box for Mario
-//bn::fixed_rect SML_Mario::make_bottom() {
+bn::fixed_rect Mario::make_bottom() {
 
-//bn::fixed_rect spriteBottom(bn::fixed_point(_position.x(), make_hitbox().bottom() + 10), bn::fixed_size spriteSize;
-//return spriteBottom;
+bn::fixed_rect spriteBottom(bn::fixed_point(_position.x(), make_hitbox().bottom() + 10), bn::fixed_size(16, 16)); //WIP
+return spriteBottom;
 
-//}
+}
 
 //Get Mario moving (walking wise)
 void Mario::move(bn::camera_ptr &camera, bool xCollide,
@@ -236,5 +255,58 @@ void Mario::move(bn::camera_ptr &camera, bool xCollide,
             moveTemp = 0.1;
             
         }
+
+     }
+
+     //Change sprites and (depending on certain conditions) level from item obtained
+     void Mario::change_level_sprites() {
+
+        switch (_level) {
+
+            //Small Mario
+            case 0:
+                _body_sprite_item = bn::sprite_items::mario;
+                _mario.set_item(_body_sprite_item);
+                break;
+
+            //Super Mario
+            case 1:
+                _body_sprite_item = bn::sprite_items::mario; //change sprite sheet (WIP)
+                _mario.set_item(_body_sprite_item);
+                break;
+
+            //Superball Mario
+            case 2:
+                _body_sprite_item = bn::sprite_items::mario; //same as Super Mario (WIP)
+                _mario.set_item(_body_sprite_item);
+                break;
+
+            //When Mario loses a life
+            default:
+                _lostLife = true;
+                _mario.set_tiles(bn::sprite_items::mario.tiles_item().create_tiles(5));
+                break;
+        }
+     }
+
+     void Mario::update() {
+
+
+        //For Superball
+        if (bn::keypad::b_pressed && _level == 2) {
+
+
+
+
+        }
+
+        //Take a look for both x and y collisions
+        bool xCollide = false;
+        bool yCollide = false;
+        bn::fixed_rect walkRect;
+        bn::fixed_rect standRect;
+
+        //Movement?
+        //move(camera, xCollide, walkRect, standRect);
 
      }

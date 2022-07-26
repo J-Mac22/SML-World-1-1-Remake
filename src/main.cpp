@@ -35,7 +35,7 @@ int main()
         Flower flower(10, 10);
          
         
-        //Mushroom mushroom(0,0); //Ask Butano Discord for help
+        Mushroom mushroom(0, 1); //Ask Butano Discord for help
         //game->update();
         bn::core::update();
     }

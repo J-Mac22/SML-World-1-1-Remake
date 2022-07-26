@@ -285,7 +285,7 @@ CLASS for Mario
      None
      */
 
-    //void decide_enemy_encounter_outcome(Enemies* enemies); //remember this
+    void decide_enemy_encounter_outcome(std::string &enemies); //remember this (Enemies*)
 
     /**
      NAME:
@@ -346,7 +346,28 @@ CLASS for Mario
      None
      */
 
-    //void change_item_sprites(Items* &item); //WIP
+    void change_item_sprites(std::string &item); //WIP
+
+    /**
+     NAME:
+     inspect_block_collision
+
+     SYNOPSIS:
+     bool Mario::inspect_block_collision(bn::vector<Block, 21> &block);
+     block -> The block to be checked.
+
+     DESCRIPTION:
+     This function will check each block's collision
+     for Mario to interact with.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     WIP
+     */
+
+    //bool inspect_block_collision(bn::vector<Blocks, 21> &block);
 
     /**
      NAME:
@@ -427,7 +448,7 @@ CLASS for Mario
      None
     */
 
-     void update();
+     void update(bn::camera_ptr &camera);
 
  };
 

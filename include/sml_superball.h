@@ -40,7 +40,7 @@ public:
 
  */
 
-Superball();
+Superball(bn::fixed positionX, bn::fixed positionY); //?
 
 /**
  NAME:

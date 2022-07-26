@@ -37,7 +37,7 @@ bn::vector<Blocks, 21> _block; //change number after watching gameplay
 bn::camera_ptr _camera;
 
 //Will hold a superball temporarily
-bn::vector<Superball, 1> _superball;
+//bn::vector<Superball, 1> _superball;
 
 //Power Star collectible
 Power_Star _star;
@@ -71,12 +71,12 @@ bn::vector<bn::fixed_rect, 100> levelRectangles, bn::vector<bn::fixed_rect, 5> h
 Power_Star star, bn::fixed cameraX, bn::fixed cameraY) :
 
     _background(backPicture),
+    _camera(bn::camera_ptr::create(cameraX, cameraY)),
     _itemEvents(items),
     _enemyEvents(enemies),
     _levelRectangles(levelRectangles),
     _levelHurtBox(hurtBox),
     _block(levelBlocks),
-    _camera(bn::camera_ptr::create(cameraX, cameraY)),
     _star(star)
 
 {
@@ -97,6 +97,8 @@ Power_Star star, bn::fixed cameraX, bn::fixed cameraY) :
     _background.set_camera(_camera);
 
 }
+
+
 
 /**
  NAME:
@@ -136,6 +138,13 @@ virtual ~Level() = default;
  */
 
 virtual void placeEnemies() {}
+
+//For dynamic loading
+//check mario's location each update
+//is the camera boundary touching an area where this thing should be?
+//yes? create it. no? next thing.
+//is mario outside current item/enemy's area?
+//yes? delete it. no? next thing.
 
 /**
  NAME:

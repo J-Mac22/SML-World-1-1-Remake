@@ -38,7 +38,7 @@ return dim;
 bn::sprite_cached_animate_action<2> Items::_make_item_animation() {
 
 return bn::create_sprite_cached_animate_action_forever(
-_item_ptr, 20, _body_item.tiles_item(), 0, 1);
+_item_ptr, 20, _body_item.tiles_item(), 0, 0);
 
 }
 

@@ -18,7 +18,7 @@ CPP for World 1-1
 bool World_1_1::update(Mario &mario) {
 
 //Have Mario be updated here
-//mario.update(_camera, _levelRectangles, _levelHurtBox, _block, _itemEvents, _enemyEvents); //WIP
+//mario.update(_camera, _levelRectangles, _levelHurtBox, _block, _itemEvents, _enemyEvents, _superball); //WIP
 
 bool deleteObjects = false;
 

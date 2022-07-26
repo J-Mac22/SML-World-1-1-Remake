@@ -35,4 +35,6 @@ if(bodyRectangles.intersects(marioHitbox)) {
 
 }
 
+return true;
+
 }

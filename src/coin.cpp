@@ -15,11 +15,10 @@ CPP for Coin
 Coin::Coin(bn::fixed positionX, bn::fixed positionY) :
 Items(bn::sprite_items::coin, positionX, positionY)
 {}
-/*
+
 //Updating the coin
 bool Coin::update(Mario &mario) {
 
 
-
+return true;
 }
-/*

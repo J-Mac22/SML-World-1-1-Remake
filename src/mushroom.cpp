@@ -29,8 +29,12 @@ bn::fixed_rect marioHitbox = mario.make_hitbox();
 //Have Mario's collision be checked
 if (bodyRectangles.intersects(marioHitbox)) {
 
-//WIP
+//WIP (One of the two will be picked)
+//mario.change_item_sprites();
+//mario.change_level_sprites();
 
 }
+
+return true;
 
 }

@@ -15,7 +15,6 @@ Goomba::Goomba(bn::fixed positionX, bn::fixed positionY) :
 Enemies(bn::sprite_items::goomba, positionX, positionY, 16, 16)
 {}
 
-
 //For updating the Goomba
 bool Goomba::update(Mario &mario) {
 
@@ -43,9 +42,27 @@ _position.set_x(_enemy_ptr.x() - moveTemp);
 
 }
 
+//WIP
+else {
 
+if (moveTemp >= 0.1 && marioMove) {
 
-};
+    //if (mario flips) {
 
+        //_enemy_ptr.set_x(_enemy_ptr.x() + moveTemp);
+        //_position.set_x(_enemy_sprite_ptr.x() + moveTemp);
 
+    //}
+
+    //else {
+
+        //_enemy_ptr.set_x(_enemy_ptr.x() - moveTemp);
+        //_position.set_x(_enemy_ptr.x() - moveTemp);
+
+    //}
+    }
+  }
+
+  return true;
+}
 //Will put more functions once I figure states out

@@ -59,7 +59,7 @@ if (!_levelClear) {
 
         }
 
-        // set Mairo position?
+        // set Mario position?
 
         //Updating the frames
         bn::core::update();
@@ -69,7 +69,38 @@ if (!_levelClear) {
     bn::core::reset();
 
 //}
+}
 
+//If the level is completed, do the level completed animation
+else {
+    //Have Mario move next to star
+
+    //Play the level complete music
+    bn::music::stop();
+    bn::sound_items::star_get.play(0.5);
+
+    for (int i = 0; i < 30; i++) {
+
+        //Freeze the game for at least a few seconds
+        bn::core::update();
+
+    }
+
+    //Move both Mario and the Power Star upwards
+    bn::fixed currY;
+
+    for (int i = 0; i < 360; i++) {
+
+        currY -= 1;
+        //Mario will go here
+        //star will also go here
+
+        //Update the frame
+        bn::core::update();
+
+    }
+
+    bn::core::reset();
 }
 
 }

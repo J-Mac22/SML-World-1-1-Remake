@@ -4,6 +4,7 @@ CPP for Mario
 
 #include "sml_mario.h"
 #include "bn_music_item.h"
+#include "bn_sound_items.h"
 #include "bn_fixed_size.h"
  
 //Constructor
@@ -37,7 +38,7 @@ return bn::create_sprite_cached_animate_action_forever(
 
 }
 
-//Mario jumping animation
+//Mario jumping animation (WIP)
 bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
                                                                   const bn::sprite_item& body_sprite)
 {
@@ -104,6 +105,55 @@ bn::fixed_rect Mario::make_bottom() {
 
 bn::fixed_rect spriteBottom(bn::fixed_point(_position.x(), make_hitbox().bottom() + 10), bn::fixed_size(16, 16)); //WIP
 return spriteBottom;
+
+}
+
+//For encounters with enemies
+void Mario::decide_enemy_encounter_outcome(std::string &enemies) {
+
+std::string enemyTitle; //Have it connect with enemy
+
+//For the Goomba
+if (enemyTitle == "goomba") {
+
+    //Falling or contact with the ground
+    if (_mstates.isFalling()) {
+
+        //Falling
+        if (_jumpLock) {
+
+            bn::fixed_rect marioHitBox = make_hitbox();
+            bn::fixed_rect enemyTopBox; //have make topbox for enemy appear here (WIP)
+
+            //To bounce off the Goomba after stomping on it
+            if (marioHitBox.intersects(enemyTopBox)) {
+
+                _mstates.flipJumping();
+                _mstates.isFalling(); //WIP
+                gravity = 2;
+                return;
+
+            }
+
+        }
+
+        //If Mario makes contact with the Goomba, have him take damage and obtain iFrames
+        else {
+
+            //if (!enemies) { //for when Enemy is dead (!)
+
+                _level--;
+                _inFrames = 120;
+                if (_level != -1) bn::sound_items::powerdown.play(0.5);
+                change_level_sprites();
+
+            //}
+
+        }
+
+    }
+
+}
 
 }
 
@@ -289,14 +339,63 @@ void Mario::move(bn::camera_ptr &camera, bool xCollide,
         }
      }
 
-     void Mario::update() {
+     //Based on the item collection, change the sprites and/or the level
+     void Mario::change_item_sprites(std::string &item) {
+
+        std::string itemTitle; //item->getName();
+
+        //If the item is a Super Mushroom, change Mario's form to Super Mario
+        if (itemTitle == "mushroom") {
+
+            if (_level <= 1) _level = 1;
+            change_level_sprites();
+
+        }
+
+        //If the item is a Superball Flower, change Mario's form to Superball Mario
+        else if (itemTitle == "flower") {
+
+            if (_level <= 2) _level = 2;
+            change_level_sprites();
+
+        }
+     }
+
+     void Mario::update(bn::camera_ptr &camera) {
+
+        //Updating the states
+
+        //For moving
+        if (bn::keypad::left_held() || bn::keypad::right_held()) {
+
+            _mstates.flipStanding();
+            _mstates.flipWalking();
+
+        }
+
+        else {
+
+            _mstates.isStanding();
+            _mstates.isWalking();
+
+        }
+
+        //For jumping
+        if (bn::keypad::a_pressed() && !_mstates.isJumping() && !_jumpLock) {
+
+            _mstates.flipJumping();
+            _mstates.isFalling(); //WIP
+            _currJumpWaitFrames = 0;
+            bn::sound_items::jump.play(0.5);
+
+        }
 
 
         //For Superball
         if (bn::keypad::b_pressed && _level == 2) {
 
-
-
+            
+            bn::sound_items::fireball.play(0.5);
 
         }
 
@@ -307,6 +406,15 @@ void Mario::move(bn::camera_ptr &camera, bool xCollide,
         bn::fixed_rect standRect;
 
         //Movement?
-        //move(camera, xCollide, walkRect, standRect);
+        move(camera, xCollide, walkRect, standRect);
+
+        //Jumping
+        jump(yCollide);
+
+        //After the jump updates, have yCollide reset
+        yCollide = false;
+
+
+
 
      }

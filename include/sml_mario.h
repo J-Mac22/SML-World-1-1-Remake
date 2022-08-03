@@ -55,6 +55,9 @@ CLASS for Mario
      //For Mario's X position
      bn::fixed currentX = 0;
 
+     //For Mario's Y position
+     bn::fixed currentY = 0; //Maybe
+
      //Other stats will go down here
 
      bool _invincibility = false;

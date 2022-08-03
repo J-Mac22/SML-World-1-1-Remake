@@ -19,7 +19,12 @@ Items(bn::sprite_items::power_star, positionX, positionY)
 //Updating the Power Star
 bool Power_Star::update(Mario &mario) {
 
-//WIP
+//Have the Power Star's animation be continually updated
+_animate_action.update();
+
+//Have Butano draw rectangles to check collision
+bn::fixed_rect bodyRectangles(_position, _dimensions);
+//bn::fixed_rect marioHitbox = mario.make_hitbox();
 
 
 }

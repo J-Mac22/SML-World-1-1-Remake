@@ -31,6 +31,8 @@ if(bodyRectangles.intersects(marioHitbox)) {
 
 
 //WIP
+//mario.change_item_sprites();
+//mario.change_level_sprites();
 
 
 }

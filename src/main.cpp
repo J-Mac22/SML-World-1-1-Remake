@@ -31,11 +31,13 @@ int main()
 
         //Placeholder object for Mario (has now popped up on screen)
         Mario mario;
-        Goomba goomba(0, 0);
+        Goomba goomba(20, 20);
         Flower flower(10, 10);
          
         
-        Mushroom mushroom(0, 1); //Ask Butano Discord for help
+        Mushroom mushroom(0, 1);  
+        Coin coin (30, 30);
+        Power_Star star (40, 40);
         //game->update();
         bn::core::update();
     }

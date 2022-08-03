@@ -57,32 +57,7 @@ void Mario::move_next_to_star(bn::fixed_point starPos) {
 
 }
 
-//Get Mario to jump
-void Mario::jump(bool collide) {
-
-//For jumping
-if (_mstates.isJumping()) {
-
-//Get jump to lock, have the sprite tile change, move Mario, and get gravity to decrease
-_jumpLock = true;
-_mario.set_tiles(bn::sprite_items::mario.tiles_item().create_tiles(4));
-_mario.set_y(_mario.y() - gravity);
-_position.set_y(_mario.y());
-gravity -= 0.25;
-
-if (gravity <= 0.0) {
-
-
-//WIP
-
-
-
-}
-
-
-}
-
-}
+ 
 
 //Hit-box for Mario
 bn::fixed_rect Mario::make_hitbox() {
@@ -308,8 +283,57 @@ void Mario::move(bn::camera_ptr &camera, bool xCollide,
 
      }
 
-     //Change sprites and (depending on certain conditions) level from item obtained
-     void Mario::change_level_sprites() {
+//Get Mario to jump
+void Mario::jump(bool yCollide) {
+
+    //For jumping
+    if (_mstates.isJumping()) {
+
+    //Get jump to lock, have the sprite tile change, move Mario, and get gravity to decrease
+    _jumpLock = true;
+    _mario.set_tiles(bn::sprite_items::mario.tiles_item().create_tiles(4));
+    _mario.set_y(_mario.y() - gravity);
+    _position.set_y(_mario.y());
+    gravity -= 0.25;
+
+    if (gravity <= 0.0) {
+
+    //If gravity is less than zero, set Mario's y position for up and down?
+    if (bn::keypad::a_pressed()) {
+
+    _mario.set_y(_mario.y() + 1);
+
+    //Have Mario gradually fall
+    //if (mario.isFalling()) {
+
+   //_mario.set_y(_mario.y() - 1);
+
+   // }
+
+    //Continue as normal if not colliding with anything
+    if (!yCollide) {
+
+
+
+    }
+     
+
+    }
+
+}
+
+    //Get gravity to increase
+    gravity += 0.25;
+
+}
+
+    //Change Mario's sprite back to standing
+    _mario.set_tiles(bn::sprite_items::mario.tiles_item().create_tiles(0));
+
+}
+
+    //Change sprites and (depending on certain conditions) level from item obtained
+    void Mario::change_level_sprites() {
 
         switch (_level) {
 

@@ -3,6 +3,7 @@ CPP for Mario
 */
 
 #include "sml_mario.h"
+#include "bn_sprite_items_super_mario.h"
 #include "bn_music_item.h"
 #include "bn_sound_items.h"
 #include "bn_fixed_size.h"
@@ -83,6 +84,7 @@ return spriteBottom;
 
 }
 
+/*
 //For encounters with enemies
 void Mario::decide_enemy_encounter_outcome(std::string &enemies) {
 
@@ -132,14 +134,15 @@ if (enemyTitle == "goomba") {
 
 }
 
+*/
+
 //Get Mario moving (walking wise)
 void Mario::move(bn::camera_ptr &camera, bool xCollide,
                      bn::fixed_rect &collideRect, bn::fixed_rect &standRect) {
 
-    //To move left   
+    //To move left (Change)
     if (bn::keypad::left_held() && _mstates.isWalking()) {
 
-       //_mstates.flipWalking(); WIP
         _animate_action.update();
         _moving = true;
 
@@ -182,7 +185,6 @@ void Mario::move(bn::camera_ptr &camera, bool xCollide,
     //To move right
     else if (bn::keypad::right_held() &&  _mstates.isWalking())   {
 
-        //_mstates.flipWalking(); WIP
         _animate_action.update();
         _moving = true;
 
@@ -345,13 +347,13 @@ void Mario::jump(bool yCollide) {
 
             //Super Mario
             case 1:
-                _body_sprite_item = bn::sprite_items::mario; //change sprite sheet (WIP)
+                _body_sprite_item = bn::sprite_items::super_mario;  
                 _mario.set_item(_body_sprite_item);
                 break;
 
             //Superball Mario
             case 2:
-                _body_sprite_item = bn::sprite_items::mario; //same as Super Mario (WIP)
+                _body_sprite_item = bn::sprite_items::super_mario; //Same sprite as Super Mario
                 _mario.set_item(_body_sprite_item);
                 break;
 
@@ -363,8 +365,9 @@ void Mario::jump(bool yCollide) {
         }
      }
 
+
      //Based on the item collection, change the sprites and/or the level
-     void Mario::change_item_sprites(std::string &item) {
+     void Mario::change_item_sprites(Items* &item) {
 
         std::string itemTitle; //item->getName();
 
@@ -385,6 +388,8 @@ void Mario::jump(bool yCollide) {
         }
      }
 
+     
+/*
      void Mario::update(bn::camera_ptr &camera) {
 
         //Updating the states
@@ -392,15 +397,17 @@ void Mario::jump(bool yCollide) {
         //For moving
         if (bn::keypad::left_held() || bn::keypad::right_held()) {
 
-            _mstates.flipStanding();
-            _mstates.flipWalking();
+            //Change
+            _mstates.isStanding();
+            _mstates.isWalking();
 
         }
 
         else {
 
-            _mstates.isStanding();
-            _mstates.isWalking();
+            //Change
+            _mstates.flipStanding();
+            _mstates.flipWalking();
 
         }
 
@@ -442,3 +449,5 @@ void Mario::jump(bool yCollide) {
 
 
      }
+
+     */

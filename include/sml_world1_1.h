@@ -10,7 +10,7 @@ DERIVED CLASS for World 1-1
 #include "sml_levels.h"
 
 #include "bn_regular_bg_ptr.h"
-//#include "bn_regular_bg_items_world1_1.h"
+#include "bn_regular_bg_items_world1_1.h"
 #include "bn_fixed.h"
 #include "bn_vector.h"
 #include "bn_sprite_items_mario.h"
@@ -21,6 +21,9 @@ class World_1_1 : public Level {
 private:
 bn::fixed backX = 0;
 bn::fixed backY = 0;
+
+protected:
+bn::regular_bg_ptr level_bg = bn::regular_bg_items::world1_1.create_bg(0, 0);
 
 public:
 /**

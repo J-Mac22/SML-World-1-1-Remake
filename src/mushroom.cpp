@@ -19,9 +19,6 @@ Items(bn::sprite_items::mushroom, positionX, positionY)
 //Updating the mushroom
 bool Mushroom::update(Mario &mario) {
 
-//Have the item's animation be continually updated
-_animate_action.update();
-
 //Have Butano draw rectangles to check collision
 bn::fixed_rect bodyRectangles(_position, _dimensions);
 bn::fixed_rect marioHitbox = mario.make_hitbox();
@@ -30,10 +27,12 @@ bn::fixed_rect marioHitbox = mario.make_hitbox();
 if (bodyRectangles.intersects(marioHitbox)) {
 
 //WIP (One of the two will be picked)
-//mario.change_item_sprites();
-//mario.change_level_sprites();
+//mario.change_item_sprites(Items* &item);
+ 
 
 }
+
+//Find a way to get items/enemies to dissappear
 
 return true;
 

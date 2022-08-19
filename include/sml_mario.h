@@ -19,8 +19,9 @@ CLASS for Mario
 
 #include "bn_sprite_items_mario.h"
 #include "sml_mario_states.h"
- 
 
+ class Items;
+ class Enemies;
  class Superball;
  
  class Mario {
@@ -59,7 +60,6 @@ CLASS for Mario
      bn::fixed currentY = 0; //Maybe
 
      //Other stats will go down here
-
      bool _invincibility = false;
      bool _die = false;
 
@@ -288,7 +288,7 @@ CLASS for Mario
      None
      */
 
-    void decide_enemy_encounter_outcome(std::string &enemies); //remember this (Enemies*)
+    void decide_enemy_encounter_outcome(Enemies* &enemies);  
 
     /**
      NAME:
@@ -349,7 +349,7 @@ CLASS for Mario
      None
      */
 
-    void change_item_sprites(std::string &item); //WIP
+    void change_item_sprites(Items* &item); 
 
     /**
      NAME:
@@ -412,7 +412,7 @@ CLASS for Mario
    bool
    */
 
-  //bool getWalk() {return mario.getWalking()};
+  //bool getWalk() {return Walkin()};
 
    /**
     NAME:
@@ -432,6 +432,9 @@ CLASS for Mario
     */
 
     bool getMove() {return _moving;};
+
+    //Test
+    //int getHorizontalFlip() {return _mario.set_horizontal_flip();};
 
 
     /**

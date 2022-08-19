@@ -4,12 +4,14 @@ CPP for the Super Mario Land game
 
 #include "sml_game.h"
 #include "sml_world1_1.h"
+#include "bn_regular_bg_items_world1_1.h"
 
 #include "bn_music_actions.h"
 #include "bn_sound_items.h"
 
 //Constructor for the game
 Game::Game() :
+//_coursePtr(new World_1_1()),
 _currLevel(1),
 _levelClear(false)
 {}

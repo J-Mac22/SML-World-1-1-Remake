@@ -13,7 +13,6 @@ Items::Items(bn::sprite_item sprite_item, bn::fixed positionX,
     _item_ptr(make_item_sprite(_body_item, positionX, positionY)),
     _animate_action(_make_item_animation()),
     _position(positionX, positionY)
-    //_name(name)
 {}
 
 

@@ -17,8 +17,6 @@ CLASS for Items
 
 #include "sml_mario.h"
 
-class Mario;
-
 class Items {
 
 protected:
@@ -83,6 +81,9 @@ virtual ~Items() = default;
   item -> The body item for the sprite
   xPosition -> Sprite X position
   yPosition -> Sprite Y position
+
+  DESCRIPTION:
+  This will create the sprite for each item.
 
   AUTHOR:
   Jack Machiaverna

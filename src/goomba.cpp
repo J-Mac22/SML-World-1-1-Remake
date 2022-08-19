@@ -10,7 +10,7 @@ CPP for Goomba
 #include "bn_sound_items.h"
 #include "bn_keypad.h"
 
-//Constructor for Goomba (maybe Koopa too?)
+//Constructor for Goomba 
 Goomba::Goomba(bn::fixed positionX, bn::fixed positionY) :
 Enemies(bn::sprite_items::goomba, positionX, positionY, 16, 16)
 {}
@@ -21,21 +21,21 @@ bool Goomba::update(Mario &mario) {
 //Have the position become synchronized
 bn::fixed moveTemp = mario.getSpeed();
 
+Mario_States _mstates;
 
-//bool walk = mario.isWalking();
+//Change to Mario?
+bool walk = _mstates.isWalking();
 bool marioMove = mario.getMove();
 
-
-//(WIP)
 //Have the Goomba move 
-if (bn::keypad::left_held() && marioMove) {
+if (bn::keypad::left_held() && walk && marioMove) {
 
 _enemy_ptr.set_x(_enemy_ptr.x() + moveTemp);
 _position.set_x(_enemy_ptr.x() + moveTemp);
 
 }
 
-else if (bn::keypad::right_held() && marioMove) {
+else if (bn::keypad::right_held() && walk && marioMove) {
 
 _enemy_ptr.set_x(_enemy_ptr.x() - moveTemp);
 _position.set_x(_enemy_ptr.x() - moveTemp);
@@ -47,17 +47,17 @@ else {
 
 if (moveTemp >= 0.1 && marioMove) {
 
-    //if (mario flips) {
+    //if (mario.) {
 
-        //_enemy_ptr.set_x(_enemy_ptr.x() + moveTemp);
-        //_position.set_x(_enemy_sprite_ptr.x() + moveTemp);
+        _enemy_ptr.set_x(_enemy_ptr.x() + moveTemp);
+        _position.set_x(_enemy_sprite_ptr.x() + moveTemp);
 
-    //}
+   // }
 
     //else {
 
-        //_enemy_ptr.set_x(_enemy_ptr.x() - moveTemp);
-        //_position.set_x(_enemy_ptr.x() - moveTemp);
+        _enemy_ptr.set_x(_enemy_ptr.x() - moveTemp);
+        _position.set_x(_enemy_ptr.x() - moveTemp);
 
     //}
     }
@@ -65,4 +65,3 @@ if (moveTemp >= 0.1 && marioMove) {
 
   return true;
 }
-//Will put more functions once I figure states out

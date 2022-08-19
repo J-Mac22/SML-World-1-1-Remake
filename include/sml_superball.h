@@ -20,6 +20,13 @@ Class for the Superball spheres
 
 class Superball : public Flower {
 
+protected:
+//Information about the superball
+const bn::sprite_item& _body_item;
+bn::sprite_ptr _ball_ptr;
+bn::fixed_point _position;
+bn::fixed_size _dimensions;
+ 
 public:
 
 /**
@@ -40,7 +47,7 @@ public:
 
  */
 
-Superball(bn::fixed positionX, bn::fixed positionY); //?
+Superball(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY); 
 
 /**
  NAME:
@@ -60,6 +67,12 @@ Superball(bn::fixed positionX, bn::fixed positionY); //?
  */
 
 virtual ~Superball() = default;
+
+//Creating superball sprite
+bn::sprite_ptr make_superball_sprite (bn::sprite_item _ballSprite, bn::fixed posX, bn::fixed posY);
+
+//Creating superball dimensions
+bn::fixed_size make_superball_dims(bn::fixed length, bn::fixed width);
 
 /**
  NAME:

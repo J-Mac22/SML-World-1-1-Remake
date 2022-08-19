@@ -7,12 +7,16 @@ CPP for World 1-1
  #include "bn_vector.h"
 
 //Constructor for World 1-1 (WIP)
+
 /*
  World_1_1::World_1_1() :
-
+ 
+ Leve::Level()
 
  {}
-*/
+
+ */
+
 
 //Updating the World 1-1 level
 bool World_1_1::update(Mario &mario) {

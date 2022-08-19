@@ -37,7 +37,7 @@ bn::vector<Blocks, 21> _block; //change number after watching gameplay
 bn::camera_ptr _camera;
 
 //Will hold a superball temporarily
-//bn::vector<Superball, 1> _superball;
+bn::vector<Superball, 1> _superball;
 
 //Power Star collectible
 Power_Star _star;
@@ -71,30 +71,31 @@ bn::vector<bn::fixed_rect, 100> levelRectangles, bn::vector<bn::fixed_rect, 5> h
 Power_Star star, bn::fixed cameraX, bn::fixed cameraY) :
 
     _background(backPicture),
-    _camera(bn::camera_ptr::create(cameraX, cameraY)),
     _itemEvents(items),
     _enemyEvents(enemies),
     _levelRectangles(levelRectangles),
     _levelHurtBox(hurtBox),
     _block(levelBlocks),
+    _camera(bn::camera_ptr::create(cameraX, cameraY)),
     _star(star)
-
 {
-    //Add collision boxes later (if statement) (maybe hurtboxes?)
+    //Add collision boxes to the top of the blocks
     for(int i = 0; i < _block.size(); i++) {
 
-    //_levelRectangles.push_back(_block[i])
+    _levelRectangles.push_back(_block[i].make_topHitBox());
 
     }
 
+    //For the boxes that have collision, add hurtboxes to them
     for(int i = 0; i < _levelHurtBox.size(); i++) {
 
-   //_levelRectangles.push_back(_levelHurtbox[i]);
+    _levelRectangles.push_back(_levelHurtBox[i]);
 
     }
 
     //Set the camera
     _background.set_camera(_camera);
+    _camera.set_position(-1670, 32);
 
 }
 

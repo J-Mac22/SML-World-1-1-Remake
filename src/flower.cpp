@@ -2,6 +2,7 @@
 CPP for Superball Flower
 */
 
+ 
 #include "sml_flower.h"
 #include "sml_mario.h"
 #include "sml_mario_states.h"
@@ -25,13 +26,21 @@ _animate_action.update();
 //Have Butano draw rectangles to check collision
 bn::fixed_rect bodyRectangles(_position, _dimensions);
 bn::fixed_rect marioHitbox = mario.make_hitbox();
+Items* item;
 
 //Have Mario's collision be checked 
 if(bodyRectangles.intersects(marioHitbox)) {
 
-//WIP
-//mario.change_item_sprites(Items* &item);
  
+mario.change_item_sprites(item);
+ 
+}
+
+else {
+
+//Deleting flower
+ 
+
 }
 
 return true;

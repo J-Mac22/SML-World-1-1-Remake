@@ -13,6 +13,7 @@ CLASS for Blocks
 #include "bn_fixed_rect.h"
 #include "bn_fixed_point.h"
 #include "bn_fixed_size.h"
+#include "bn_vector.h"
 
 #include "sml_mario.h"
 

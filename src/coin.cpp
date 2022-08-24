@@ -12,10 +12,12 @@ CPP for Coin
 #include "bn_sound_items.h"
 #include "bn_hbe_ptr.h"
 
+
 //Constructor for Coin
 Coin::Coin(bn::fixed positionX, bn::fixed positionY) :
 Items(bn::sprite_items::coin, positionX, positionY)
 {}
+
 
 //Updating the coin
 bool Coin::update(Mario &mario) {
@@ -24,10 +26,10 @@ bool Coin::update(Mario &mario) {
 bn::fixed_rect bodyRectangles(_position, _dimensions);
 bn::fixed_rect marioHitbox = mario.make_hitbox();
 
-//Have Mario's collision be checked
+//Have Mario's collision be checked (Might have to change)
 if(bodyRectangles.intersects(marioHitbox)) {
 
-//WIP
+
  
 
 }

@@ -18,7 +18,7 @@ Class for the Superball spheres
 #include "sml_mario.h"
 #include "sml_flower.h"
 
-class Superball : public Flower {
+class Superball {
 
 protected:
 //Information about the superball
@@ -73,6 +73,9 @@ bn::sprite_ptr make_superball_sprite (bn::sprite_item _ballSprite, bn::fixed pos
 
 //Creating superball dimensions
 bn::fixed_size make_superball_dims(bn::fixed length, bn::fixed width);
+
+//Creating hitbox
+bn::fixed_rect make_hitbox();
 
 /**
  NAME:

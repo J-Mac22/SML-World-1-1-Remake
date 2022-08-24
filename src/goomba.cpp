@@ -42,26 +42,27 @@ _position.set_x(_enemy_ptr.x() - moveTemp);
 
 }
 
-//WIP
 else {
 
 if (moveTemp >= 0.1 && marioMove) {
 
-    //if (mario.) {
+    if (mario.getHorizontalFlip()) {
 
         _enemy_ptr.set_x(_enemy_ptr.x() + moveTemp);
-        _position.set_x(_enemy_sprite_ptr.x() + moveTemp);
+        _position.set_x(_enemy_ptr.x() + moveTemp);
 
-   // }
+   }
 
-    //else {
+    else {
 
         _enemy_ptr.set_x(_enemy_ptr.x() - moveTemp);
         _position.set_x(_enemy_ptr.x() - moveTemp);
 
-    //}
     }
+
   }
+
+}
 
   return true;
 }

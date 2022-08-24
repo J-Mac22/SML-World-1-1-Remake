@@ -105,6 +105,11 @@ class Mario_States {
         mStates[Walking] = !mStates[Walking];
     }
 
+    //Update walking
+    void updateWalking(bool newState) {
+        mStates[Walking] = newState; 
+    }
+
     /**
      NAME:
      isJumping
@@ -147,6 +152,11 @@ class Mario_States {
 
     void flipJumping() {
         mStates[Jumping] = !mStates[Jumping];
+    }
+
+    //Update jumping
+    void updateJumping(bool newState) {
+        mStates[Jumping] = newState;
     }
 
     /**
@@ -193,6 +203,11 @@ class Mario_States {
         mStates[Idle] = !mStates[Idle];
     }
 
+    //Updating standing
+    void updateStanding(bool newState) {
+        mStates[Idle] = newState;
+    }
+
     /**
      NAME:
      isFalling
@@ -235,6 +250,11 @@ class Mario_States {
 
     void flipFalling() {
         mStates[Falling] = !mStates[Falling];
+    }
+
+    //Updating falling
+    void updateFalling(bool newState) {
+        mStates[Falling] = newState;
     }
 
 };

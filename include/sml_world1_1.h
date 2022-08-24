@@ -22,9 +22,6 @@ private:
 bn::fixed backX = 0;
 bn::fixed backY = 0;
 
-protected:
-bn::regular_bg_ptr level_bg = bn::regular_bg_items::world1_1.create_bg(0, 0);
-
 public:
 /**
 NAME:
@@ -42,8 +39,11 @@ Jack Machiaverna
 RETURNS:
 None
 */
-  
-World_1_1();
+
+World_1_1() :
+    Level(bn::regular_bg_items::world1_1.create_bg(backX, backY), 0, 0)
+{}
+
 
 /**
  NAME:
@@ -178,7 +178,7 @@ bn::vector<bn::fixed_rect, 100> hitBoxPopulate();
 
  AUTHOR:
  Jack Machiaverna
-
+ 
  RETURNS:
  bn::vector<bn::fixed_rect, 100>
  */
@@ -203,7 +203,7 @@ bn::vector<bn::fixed_rect, 100> geoPopulate();
  A boolean for whether the level is complete or not.
  */
 
-bool update(Mario &mario);
+int update(Mario &mario);
 
 };
 

@@ -22,17 +22,21 @@ bool Mushroom::update(Mario &mario) {
 //Have Butano draw rectangles to check collision
 bn::fixed_rect bodyRectangles(_position, _dimensions);
 bn::fixed_rect marioHitbox = mario.make_hitbox();
+Items* item;
 
 //Have Mario's collision be checked
 if (bodyRectangles.intersects(marioHitbox)) {
 
-//WIP (One of the two will be picked)
-//mario.change_item_sprites(Items* &item);
+mario.change_item_sprites(item);
+ 
+}
+
+else {
+
+//Deleting mushroom
  
 
 }
-
-//Find a way to get items/enemies to dissappear
 
 return true;
 

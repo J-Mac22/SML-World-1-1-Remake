@@ -49,7 +49,7 @@ return hitbox;
 }
 
 //Creating the top hitbox
-bn::fixed_rect Enemies::make_topHitBox() {
+bn::fixed_rect Enemies::make_top() {
 
 bn::fixed_rect spriteTop(bn::fixed_point(_position.x(), make_hitbox().top() - 15), bn::fixed_size(8, 8)); //WIP
 return spriteTop;

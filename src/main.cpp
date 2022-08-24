@@ -9,6 +9,7 @@ MAIN CPP
 #include "sml_goomba.h"
 #include "sml_mushroom.h"
 #include "sml_flower.h"
+#include "sml_superball.h"
 #include "sml_coin.h"
 #include "sml_power_star.h"
 #include "sml_regular_blocks.h"
@@ -32,15 +33,16 @@ int main()
         Mario mario;
         Goomba goomba(20, 20);
         Flower flower(10, 10);
-         
+        Superball superball();
         
         Mushroom mushroom(0, 1);  
         Coin coin (30, 30);
-        Power_Star star (40, 40);
         RegBlock block(50, 50);
         QuesBlock question(20, 50);
-        
-        //game->update();
+        //World_1_1();
+        bn::regular_bg_ptr  _background = bn::regular_bg_items::world1_1.create_bg(0, 0);
+
+        game->update();
         bn::core::update();
     }
 }

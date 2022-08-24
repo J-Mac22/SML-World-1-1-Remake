@@ -3,6 +3,7 @@ CPP for the Super Mario Land game
 */
 
 #include "sml_game.h"
+#include "sml_mario.h"
 #include "sml_world1_1.h"
 #include "bn_regular_bg_items_world1_1.h"
 
@@ -16,7 +17,8 @@ _currLevel(1),
 _levelClear(false)
 {}
 
-//Updating the game
+
+ //Updating the game
 void Game::update() {
 
 //If the level has not been finished, continue to update it
@@ -70,7 +72,7 @@ if (!_levelClear) {
     //Reset the core after the animation is done
     bn::core::reset();
 
-//}
+    //}
 }
 
 //If the level is completed, do the level completed animation
@@ -106,3 +108,4 @@ else {
 }
 
 }
+

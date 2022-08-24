@@ -7,6 +7,7 @@ CLASS for Level
 
 #include "bn_regular_bg_ptr.h"
 #include "bn_regular_bg_item.h"
+#include "bn_camera_ptr.h"
 #include "bn_camera_actions.h"
 #include "bn_fixed_rect.h"
 
@@ -26,21 +27,18 @@ protected:
 //Background for the level
 bn::regular_bg_ptr _background;
 
+//Camera for the level
+bn::camera_ptr _camera;
+
 //Parts of the level
-bn::vector <Items*, 100> _itemEvents;
+bn::vector<Items*, 100> _itemEvents;
 bn::vector<Enemies*, 100> _enemyEvents;
 bn::vector<bn::fixed_rect, 100> _levelRectangles;
 bn::vector<bn::fixed_rect, 5> _levelHurtBox; 
 bn::vector<Blocks, 21> _block; //change number after watching gameplay
 
-//Camera for the level
-bn::camera_ptr _camera;
-
 //Will hold a superball temporarily
 bn::vector<Superball, 1> _superball;
-
-//Power Star collectible
-Power_Star _star;
 
 public:
 
@@ -66,19 +64,12 @@ public:
  None
  */
 
-Level(bn::regular_bg_ptr backPicture, bn::vector<Items*, 100> items, bn::vector<Enemies*, 100> enemies,
-bn::vector<bn::fixed_rect, 100> levelRectangles, bn::vector<bn::fixed_rect, 5> hurtBox, bn::vector<Blocks, 21> levelBlocks,
-Power_Star star, bn::fixed cameraX, bn::fixed cameraY) :
-
+Level(bn::regular_bg_ptr backPicture, bn::fixed cameraX, bn::fixed cameraY) :
     _background(backPicture),
-    _itemEvents(items),
-    _enemyEvents(enemies),
-    _levelRectangles(levelRectangles),
-    _levelHurtBox(hurtBox),
-    _block(levelBlocks),
-    _camera(bn::camera_ptr::create(cameraX, cameraY)),
-    _star(star)
-{
+    _camera(bn::camera_ptr::create(cameraX, cameraY))
+
+{       
+
     //Add collision boxes to the top of the blocks
     for(int i = 0; i < _block.size(); i++) {
 
@@ -93,14 +84,11 @@ Power_Star star, bn::fixed cameraX, bn::fixed cameraY) :
 
     }
 
-    //Set the camera
-    _background.set_camera(_camera);
-    _camera.set_position(-1670, 32);
+//Set camera
+_background.set_camera(_camera);
 
 }
-
-
-
+ 
 /**
  NAME:
  ~Level
@@ -120,7 +108,7 @@ Power_Star star, bn::fixed cameraX, bn::fixed cameraY) :
 
 virtual ~Level() = default;
 
-/**
+ /**
  NAME:
  placeEnemies
 
@@ -165,7 +153,7 @@ virtual void placeEnemies() {}
  0
  */
 
-virtual bool update (Mario &mario) { return false; } //Placeholder
+virtual int update (Mario &mario) { return false; } //Placeholder
 
 };
 

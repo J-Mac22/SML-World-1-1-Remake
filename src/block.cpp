@@ -11,6 +11,7 @@ CPP for Blocks
 #include "bn_keypad.h"
 #include "bn_sound_items.h"
 
+
 //Constructor
 Blocks::Blocks(bn::sprite_item sprite_item, bn::fixed positionX, 
                 bn::fixed positionY) :

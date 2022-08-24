@@ -6,20 +6,8 @@ CPP for World 1-1
  #include "bn_sprite_ptr.h"
  #include "bn_vector.h"
 
-//Constructor for World 1-1 (WIP)
-
-/*
- World_1_1::World_1_1() :
- 
- Leve::Level()
-
- {}
-
- */
-
-
 //Updating the World 1-1 level
-bool World_1_1::update(Mario &mario) {
+int World_1_1::update(Mario &mario) {
 
 //Have Mario be updated here
 //mario.update(_camera, _levelRectangles, _levelHurtBox, _block, _itemEvents, _enemyEvents, _superball); //WIP
@@ -56,7 +44,5 @@ for (int i = 0; i < _enemyEvents.size(); i++) {
         i--;
 
     }
-}
-
-
+  }
 }

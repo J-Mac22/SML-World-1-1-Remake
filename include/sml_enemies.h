@@ -172,7 +172,7 @@ bn::fixed_rect make_hitbox();
  bn::fixed_rect
  */
 
-bn::fixed_rect make_topHitBox();
+bn::fixed_rect make_top();
 
 /**
  NAME:

@@ -84,18 +84,24 @@ return spriteBottom;
 
 }
 
-/*
+
 //For encounters with enemies
-void Mario::decide_enemy_encounter_outcome(std::string &enemies) {
+void Mario::decide_enemy_encounter_outcome(Enemies* &enemies) {
+
 std::string enemyTitle; //Have it connect with enemy
+
 //For the Goomba
 if (enemyTitle == "goomba") {
+
     //Falling or contact with the ground
     if (_mstates.isFalling()) {
+
         //Falling
         if (_jumpLock) {
+
             bn::fixed_rect marioHitBox = make_hitbox();
-            bn::fixed_rect enemyTopBox; //have make topbox for enemy appear here (WIP)
+            bn::fixed_rect enemyTopBox = make_top();  
+
             //To bounce off the Goomba after stomping on it
             if (marioHitBox.intersects(enemyTopBox)) {
                 _mstates.flipJumping();
@@ -104,19 +110,22 @@ if (enemyTitle == "goomba") {
                 return;
             }
         }
+
         //If Mario makes contact with the Goomba, have him take damage and obtain iFrames
         else {
-            //if (!enemies) { //for when Enemy is dead (!)
+
+            if (!enemies) { //for when Enemy is dead
+
                 _level--;
                 _inFrames = 120;
                 if (_level != -1) bn::sound_items::powerdown.play(0.5);
                 change_level_sprites();
-            //}
+
+            }
         }
     }
 }
 }
-*/
 
 //Get Mario moving (walking wise)
 void Mario::move(bn::camera_ptr &camera, bool xCollide,
@@ -295,18 +304,19 @@ void Mario::jump(bool yCollide) {
     //Have the sprite tile change, move Mario, and get gravity to increase
     _mario.set_tiles(bn::sprite_items::mario.tiles_item().create_tiles(4));
     _mario.set_y(_mario.y() + gravity);
-    _position.set_y(_mario.y());
     gravity += 0.25;
 
     //For the extra push down
     if (gravity == TOP_GRAV) _mario.set_y(_mario.y() + TOP_GRAV);
 
-}
-
     //Change Mario's sprite back to standing
+    if(_mario.y() >= 40) {
+
     _mario.set_tiles(bn::sprite_items::mario.tiles_item().create_tiles(0));
     _jumpLock = false;
 
+  }
+ }
 }
 
     //Change sprites and (depending on certain conditions) level from item obtained
@@ -363,8 +373,16 @@ void Mario::jump(bool yCollide) {
         }
      }
 
-     
-/*
+//To look out for block collisions
+bool Mario::inspect_block_collision(bn::vector<Blocks, 21> &block) {
+
+    bn::fixed_rect hitBox = make_hitbox();
+
+    //WIP
+
+}
+
+    /*
      void Mario::update(bn::camera_ptr &camera) {
         //Updating the states
         //For moving
@@ -380,35 +398,7 @@ void Mario::jump(bool yCollide) {
             _mstates.flipWalking();
         }
 
-        //For jumping
-        if (bn::keypad::a_pressed() && !_mstates.isJumping() && !_jumpLock) {
-            _mstates.flipJumping();
-            _mstates.isFalling(); //WIP
-            _currJumpWaitFrames = 0;
-            bn::sound_items::jump.play(0.5);
-        }
-
-
-        //For Superball
-        if (bn::keypad::b_pressed && superball.size() && _level == 2) {
-            superball.push_back(Superball (_mario.x() + 5, _mario.y(), _mario.horizontal_flip()));
-            bn::sound_items::fireball.play(0.5);
-        }
-
-        //Take a look for both x and y collisions
-        bool xCollide = false;
-        bool yCollide = false;
-        bn::fixed_rect walkRect;
-        bn::fixed_rect standRect;
-
-        //Movement?
-        move(camera, xCollide, walkRect, standRect);
-
-        //Jumping
-        jump(yCollide);
-
-        //After the jump updates, have yCollide reset
-        yCollide = false;
-        change_item_sprites(yCollide);
+        
      }
      */
+     

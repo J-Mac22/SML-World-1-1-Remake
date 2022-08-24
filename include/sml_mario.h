@@ -23,6 +23,7 @@ CLASS for Mario
  class Items;
  class Enemies;
  class Superball;
+ class Blocks;
  
  class Mario {
 
@@ -64,7 +65,7 @@ CLASS for Mario
      bool _die = false;
 
      //Losing a life
-     bool _lostLife = false; //(WIP)
+     bool _lostLife = false; 
 
      //Frames for invincibility
      int _inFrames = 0;
@@ -265,7 +266,7 @@ CLASS for Mario
      None
      */
 
-    void jump(bool collide);
+    void jump(bool yCollide);
 
     /**
      NAME:
@@ -370,7 +371,7 @@ CLASS for Mario
      WIP
      */
 
-    //bool inspect_block_collision(bn::vector<Blocks, 21> &block);
+    bool inspect_block_collision(bn::vector<Blocks, 21> &block);
 
     /**
      NAME:
@@ -428,14 +429,48 @@ CLASS for Mario
     Jack Machiaverna
 
     RETURNS:
-    bool
+    _moving
     */
 
     bool getMove() {return _moving;};
 
-    //Test
-    //int getHorizontalFlip() {return _mario.set_horizontal_flip();};
+    /**
+     NAME:
+     getHorizontalFlip
 
+     SYNOPSIS:
+     int Mario::getHorizontalFlip();
+
+     DESCRIPTION:
+     Getter function to obtain the horizontal flip for Mario.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     _mario.horizontal_flip()
+     */
+
+    int getHorizontalFlip() {return _mario.horizontal_flip();};
+
+    /**
+     NAME:
+     getDie
+
+     SYNOPSIS:
+     bool Mario::getDie();
+
+     DESCRIPTION:
+     Getter function for having Mario die in the game.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     _die
+     */
+
+    bool getDie() {return _die;};
 
     /**
      NAME:

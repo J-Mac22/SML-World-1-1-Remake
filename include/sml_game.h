@@ -5,12 +5,13 @@ CLASS for Game
 #ifndef SML_GAME_H
 #define SML_GAME_H
 
-#include "bn_regular_bg_actions.h"
+#include "bn_regular_bg_ptr.h"
+#include "bn_regular_bg_item.h"
 
 class Game {
 
 protected:
-//bn::regular_bg_ptr _coursePtr;
+//bn::regular_bg_item _coursePtr;
 int _currLevel = 0;
 bool _levelClear;
 

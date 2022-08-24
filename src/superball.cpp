@@ -12,17 +12,16 @@ CPP for Superball spheres
 #include "bn_keypad.h"
 #include "bn_sound_items.h"
 
-/*
+
 //Constructor for superball
 Superball::Superball(bn::sprite_item sprite_item, bn::fixed positionX,
                             bn::fixed positionY) :
 
-    _body_item(sprite_item),
-    _ball_ptr(make_item_sprite(_body_item, positionX, positionY)),
+    _body_item(bn::sprite_items::superball),
+    _ball_ptr(make_superball_sprite(_body_item, positionX, positionY)),
     _position(positionX, positionY)
 
 {}
-*/
 
 
 //Creating the Superball sprite
@@ -41,6 +40,11 @@ bn::fixed_size Superball::make_superball_dims(bn::fixed length, bn::fixed width)
     return dim;
 
 }
- 
 
+//Creating hitbox for the item
+bn::fixed_rect Superball::make_hitbox() {
 
+bn::fixed_rect hitbox(_position, _dimensions);
+return hitbox;
+
+} 

@@ -143,7 +143,7 @@ bn::sprite_ptr  make_enemy_sprite(bn::sprite_item item, bn::fixed positionX, bn:
  bn::fixed_rect make_hitbox();
 
  DESCRIPTION:
- This function will create a hitbox for the item
+ This function will create a hitbox for the enemy
  by utilizing both its' dimensions and position.
  
  AUTHOR:

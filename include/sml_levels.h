@@ -35,7 +35,7 @@ bn::vector<Items*, 100> _itemEvents;
 bn::vector<Enemies*, 100> _enemyEvents;
 bn::vector<bn::fixed_rect, 100> _levelRectangles;
 bn::vector<bn::fixed_rect, 5> _levelHurtBox; 
-bn::vector<Blocks, 21> _block; //change number after watching gameplay
+bn::vector<Blocks, 21> _block;  
 
 //Will hold a superball temporarily
 bn::vector<Superball, 1> _superball;
@@ -153,7 +153,7 @@ virtual void placeEnemies() {}
  0
  */
 
-virtual int update (Mario &mario) { return false; } //Placeholder
+virtual int update (Mario &mario) { return false; } 
 
 };
 

@@ -39,7 +39,7 @@ Power_Star(bn::fixed positionX, bn::fixed positionY);
  virtual Power_Star::~Power_Star();
 
  DESCRIPTION:
- A virtual destructor for the Superball Flower.
+ A virtual destructor for the Power Star.
 
  AUTHOR:
  Jack Machiaverna

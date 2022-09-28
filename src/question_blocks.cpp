@@ -35,4 +35,5 @@ mario.inspect_block_collision(block);
 block.clear();
 
 return true;
+
 }

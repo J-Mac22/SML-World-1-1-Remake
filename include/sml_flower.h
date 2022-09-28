@@ -59,7 +59,7 @@ public:
 
    DESCRIPTION:
    This function will update both the Superball Flower's 
-   animation and position.  It will return whether the flower should  
+   position.  It will return whether the flower should  
    be deleted or not.
 
    AUTHOR:

@@ -24,25 +24,31 @@ int main()
     bn::core::init();
     bn::unique_ptr<Game> game(new Game());
     bn::music_items::supermarioland.play(0.1);  
+  
+    Mario mario;
+    Goomba goomba(40, -10);
+    Flower flower(116, -75);
+    Superball superball();
+    Mushroom mushroom(20, -51);  
+    Coin coin (-50, -50);
+    RegBlock block(20, -43);
+    Power_Star star(90, -40);
+    QuesBlock question(116, -67);
+    World_1_1* w1_1 = new World_1_1();
 
     //The main loop
     while(true)
     {
-
-        //Placeholder object for Mario (has now popped up on screen)
-        Mario mario;
-        Goomba goomba(20, 20);
-        Flower flower(10, 10);
-        Superball superball();
-        
-        Mushroom mushroom(0, 1);  
-        Coin coin (30, 30);
-        RegBlock block(50, 50);
-        QuesBlock question(20, 50);
-        //World_1_1();
-        bn::regular_bg_ptr  _background = bn::regular_bg_items::world1_1.create_bg(0, 0);
-
-        game->update();
+         
+        game->update(mario);
+        mario.update();
+        goomba.update(mario);
+        mushroom.update(mario);
+        flower.update(mario);
+        coin.update(mario);
+        block.update(mario);
+        question.update(mario);
         bn::core::update();
+
     }
 }

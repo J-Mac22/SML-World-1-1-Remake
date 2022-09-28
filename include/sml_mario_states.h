@@ -7,6 +7,7 @@ CLASS for Mario's states
 
 #include "sml_mario.h"
  
+ 
 class Mario_States {
 
     private:
@@ -105,7 +106,24 @@ class Mario_States {
         mStates[Walking] = !mStates[Walking];
     }
 
-    //Update walking
+     /**
+     NAME:
+     updateWalking
+
+     SYNOPSIS:
+     void updateWalking(bool newState);
+
+     DESCRIPTION:
+     This will update Mario's walking state by mapping 
+     his original state to a new boolean state.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
     void updateWalking(bool newState) {
         mStates[Walking] = newState; 
     }
@@ -154,7 +172,24 @@ class Mario_States {
         mStates[Jumping] = !mStates[Jumping];
     }
 
-    //Update jumping
+    /**
+     NAME:
+     updateJumping
+
+     SYNOPSIS:
+     void updateJumping(bool newState);
+
+     DESCRIPTION:
+     This will update Mario's jumping state by mapping 
+     his original state to a new boolean state.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
     void updateJumping(bool newState) {
         mStates[Jumping] = newState;
     }
@@ -203,7 +238,24 @@ class Mario_States {
         mStates[Idle] = !mStates[Idle];
     }
 
-    //Updating standing
+    /**
+     NAME:
+     updateStanding
+
+     SYNOPSIS:
+     void updateStanding(bool newState);
+
+     DESCRIPTION:
+     This will update Mario's idle state by mapping 
+     his original state to a new boolean state.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
     void updateStanding(bool newState) {
         mStates[Idle] = newState;
     }
@@ -252,7 +304,24 @@ class Mario_States {
         mStates[Falling] = !mStates[Falling];
     }
 
-    //Updating falling
+    /**
+     NAME:
+     updateFalling
+
+     SYNOPSIS:
+     void updateFalling(bool newState);
+
+     DESCRIPTION:
+     This will update Mario's falling state by mapping 
+     his original state to a new boolean state.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
     void updateFalling(bool newState) {
         mStates[Falling] = newState;
     }

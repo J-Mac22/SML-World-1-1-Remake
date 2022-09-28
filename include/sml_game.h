@@ -5,13 +5,14 @@ CLASS for Game
 #ifndef SML_GAME_H
 #define SML_GAME_H
 
+#include "sml_mario.h"
+
 #include "bn_regular_bg_ptr.h"
 #include "bn_regular_bg_item.h"
 
 class Game {
 
 protected:
-//bn::regular_bg_item _coursePtr;
 int _currLevel = 0;
 bool _levelClear;
 
@@ -51,10 +52,10 @@ Game();
  Jack Machiaverna
 
  RETURNS:
- WIP
+ None
  */
 
-void update();
+void update(Mario &mario);
 
 };
 #endif

@@ -39,7 +39,7 @@ class Goomba : public Enemies {
      virtual Goomba::~Goomba();
 
      DESCRIPTION:
-     A destructor that will destroy the Goomba object after it has been defeated by Mario.
+     A virtual destructor that will destroy the Goomba object after it has been defeated by Mario.
 
      AUTHOR:
      Jack Machiaverna

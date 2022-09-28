@@ -27,7 +27,7 @@ bn::sprite_cached_animate_action<2> _animate_action;
 bn::fixed_point _position;
 bn::fixed_size _dimensions;
 std::string _name; 
- 
+
 public:
 
 /**

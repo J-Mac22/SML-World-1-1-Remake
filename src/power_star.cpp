@@ -25,8 +25,9 @@ _animate_action.update();
 
 //Have Butano draw rectangles to check collision
 bn::fixed_rect bodyRectangles(_position, _dimensions);
-//bn::fixed_rect marioHitbox = mario.make_hitbox();
+bn::fixed_rect marioHitbox = mario.make_hitbox();
 
- 
+//Will go into game class
+return false;
 
 }

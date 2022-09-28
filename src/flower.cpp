@@ -2,7 +2,6 @@
 CPP for Superball Flower
 */
 
- 
 #include "sml_flower.h"
 #include "sml_mario.h"
 #include "sml_mario_states.h"
@@ -31,18 +30,17 @@ Items* item;
 //Have Mario's collision be checked 
 if(bodyRectangles.intersects(marioHitbox)) {
 
- 
+//Have Mario change his form, play the sound, and delete the item
 mario.change_item_sprites(item);
+bn::sound_items::powerup.play(0.5);
+return true;
  
 }
 
 else {
 
-//Deleting flower
- 
+return false;
 
 }
-
-return true;
 
 }

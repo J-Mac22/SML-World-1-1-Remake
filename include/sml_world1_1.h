@@ -31,7 +31,7 @@ SYNOPSIS:
 World_1_1::World_1_1();
 
 DESCRIPTION:
-Will call upon the Levels constructor and then passes a background to it.
+Will call upon the Level constructor and then passes a background to it.
 
 AUTHOR:
 Jack Machiaverna
@@ -47,7 +47,7 @@ World_1_1() :
 
 /**
  NAME:
- ~WORLD_1_1
+ ~World_1_1
 
  SYNOPSIS:
  virtual World_1_1::~World_1_1()

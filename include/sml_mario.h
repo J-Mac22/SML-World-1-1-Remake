@@ -58,7 +58,7 @@ CLASS for Mario
      bn::fixed currentX = 0;
 
      //For Mario's Y position
-     bn::fixed currentY = 0; //Maybe
+     bn::fixed currentY = 0; 
 
      //Other stats will go down here
      bool _invincibility = false;
@@ -137,29 +137,27 @@ CLASS for Mario
 
      bn::sprite_cached_animate_action<4> make_walk_animation(bn::sprite_ptr mario_sprite,
                                                                const bn::sprite_item& body_sprite_item);
+    /**
+      NAME:
+      make_jump_animation
 
-    //Check
-     /**
-        NAME:
-        make_jump_animation
-
-        SYNOPSIS:
-        bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
+      SYNOPSIS:
+      bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
                                                                   const bn::sprite_item& body_sprite_item);
 
-        mario_sprite -> A pointer that relates to Mario's sprite
-        body_sprite_item -> The body of Mario's sprite
+      mario_sprite -> A pointer that relates to Mario's sprite
+      body_sprite_item -> The body of Mario's sprite
 
-        DESCRIPTION:
-        A function that will create Mario's jumping animation, allowing him to go up and then go down.
+      DESCRIPTION:
+      A function that will create Mario's jumping animation, allowing him to go up and then go down.
 
-        AUTHOR:
-        Jack Machiaverna
+      AUTHOR:
+      Jack Machiaverna
 
-        RETURNS:
-        bn::create_sprite_cached_animate_action_forever
-      */
-        bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
+      RETURNS:
+      bn::create_sprite_cached_animate_action_forever
+    */
+      bn::sprite_cached_animate_action<3> make_jump_animation(bn::sprite_ptr mario_sprite,
                                                                   const bn::sprite_item& body_sprite_item);
 
      
@@ -244,8 +242,7 @@ CLASS for Mario
       None
       */
 
-     void move (bn::camera_ptr &camera, bool xCollide,
-                 bn::fixed_rect &collideRect, bn::fixed_rect &standRect);
+     void move(bool xCollide, bn::fixed_rect &collisionRect, bn::fixed_rect &standingRect);
 
     /**
      NAME:
@@ -290,27 +287,6 @@ CLASS for Mario
      */
 
     void decide_enemy_encounter_outcome(Enemies* &enemies);  
-
-    /**
-     NAME:
-     move_next_to_star
-
-     SYNOPSIS:
-     void Mario::move_next_to_star(bn::fixed_point starPos);
-
-     starPos -> The position of the Power Star.
-
-     DESCRIPTION:
-     Will have Mario move next to the Power Star when it's collected.
-
-     AUTHOR:
-     Jack Machiaverna
-
-     RETURNS:
-     None
-     */
-
-    void move_next_to_star(bn::fixed_point starPos);
 
     /**
      NAME:
@@ -368,7 +344,7 @@ CLASS for Mario
      Jack Machiaverna
 
      RETURNS:
-     WIP
+     bool
      */
 
     bool inspect_block_collision(bn::vector<Blocks, 21> &block);
@@ -393,27 +369,25 @@ CLASS for Mario
 
     void change_level_sprites();
 
-  //Make getWalk and getMove functions for tomorrow
+/**
+     NAME:
+     move_next_to_star
 
-  //Check
-  /**
-   NAME:
-   getWalk
+     SYNOPSIS:
+     void Mario::move_next_to_star(bn::fixed_point starPos);
+     starPos -> The position of the Power Star.
 
-   SYNOPSIS:
-   bool Mario::getWalk();
+     DESCRIPTION:
+     Will have Mario move next to the Power Star when it's collected.
 
-   DESCRIPTION:
-   Getter function to get Mario walking.
+     AUTHOR:
+     Jack Machiaverna
 
-   AUTHOR:
-   Jack Machiaverna
+     RETURNS:
+     None
+     */
 
-   RETURNS:
-   bool
-   */
-
-  //bool getWalk() {return Walkin()};
+    void move_next_to_star(bn::fixed_point starPos);
 
    /**
     NAME:
@@ -472,6 +446,128 @@ CLASS for Mario
 
     bool getDie() {return _die;};
 
+/**
+     NAME:
+     checkX
+
+     SYNOPSIS:
+     bool Mario::checkX (bn::vector<bn::fixed_rect, 100> _levelRectangles);
+
+     _levelRectangles -> the collision rectangles to be checked
+
+     DESCRIPTION:
+     Will check to see if Mario's X position collides or not.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     bool
+     */
+    
+    bool checkX (bn::vector<bn::fixed_rect, 100> _levelRectangles);
+
+    /**
+     NAME:
+     getX
+
+     SYNOPSIS:
+     bn::fixed Mario::getX();
+
+     DESCRIPTION:
+     This function will get Mario's x position.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     bn::fixed
+     */
+
+    bn::fixed getX();
+
+     /**
+     NAME:
+     setX
+
+     SYNOPSIS:
+     void Mario::setX(bn::fixed currX);
+
+     currX -> where Mario's x position currently is
+
+     DESCRIPTION:
+     This function will set where Mario's current X position is.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
+    void setX(bn::fixed currX);
+
+  /**
+     NAME:
+     checkY
+
+     SYNOPSIS:
+     bool Mario::checkY (bn::vector<bn::fixed_rect, 100> _levelRectangles);
+
+     _levelRectangles -> the collision rectangles to be checked
+
+     DESCRIPTION:
+     Will check to see if Mario's Y position collides or not.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     bool
+     */
+
+    bool checkY (bn::vector<bn::fixed_rect, 100> _levelRectangles);
+
+     /**
+     NAME:
+     getY
+
+     SYNOPSIS:
+     bool Mario::getY();
+
+     DESCRIPTION:
+     This function will get Mario's y position.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     bn::fixed
+     */
+
+    bn::fixed getY();
+
+    /**
+     NAME:
+     setY
+
+     SYNOPSIS:
+     void Mario::setY(bn::fixed currY);
+
+     currY -> where Mario's y position currently is
+
+     DESCRIPTION:
+     This function will set where Mario's current Y position is.
+
+     AUTHOR:
+     Jack Machiaverna
+
+     RETURNS:
+     None
+     */
+
+    void setY (bn::fixed currY);
+
     /**
      NAME:
      update
@@ -489,7 +585,7 @@ CLASS for Mario
      None
     */
 
-     void update(bn::camera_ptr &camera);
+     void update();
 
  };
 

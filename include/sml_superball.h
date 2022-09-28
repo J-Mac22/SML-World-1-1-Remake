@@ -68,13 +68,69 @@ Superball(bn::sprite_item sprite_item, bn::fixed positionX, bn::fixed positionY)
 
 virtual ~Superball() = default;
 
-//Creating superball sprite
+/**
+ NAME:
+ make_superball_sprite
+
+ SYNOPSIS:
+ bn::sprite_ptr Superball::make_superball_sprite (bn::sprite_item _ballSprite, bn::fixed posX, bn::fixed posY);
+
+ _ballSprite -> the Superball's sprite
+ posX -> the X position for the sprite
+ posY -> the Y position for the sprite
+
+ DESCRIPTION:
+ This function will create the Superball's sprite, while also using it's X and Y position.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ builder.release_build()
+ */
+
 bn::sprite_ptr make_superball_sprite (bn::sprite_item _ballSprite, bn::fixed posX, bn::fixed posY);
 
-//Creating superball dimensions
+/**
+ NAME:
+ make_superball_dims
+
+ SYNOPSIS:
+ bn::fixed_size Superball::make_superball_dims(bn::fixed length, bn::fixed width);
+ 
+ length -> the length of the Superball's dimensions
+ width -> the width of the Superball's dimensions
+
+ DESCRIPTION:
+ A helper function that will define the dimensions for the Superball object.
+
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::fixed
+ */
+
 bn::fixed_size make_superball_dims(bn::fixed length, bn::fixed width);
 
-//Creating hitbox
+/**
+ NAME:
+ make_hitbox
+
+ SYNOPSIS:
+ bn::fixed_rect make_hitbox();
+
+ DESCRIPTION:
+ This function will create a hitbox for the superball
+ by utilizing both its' dimensions and position.
+ 
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::fixed_rect 
+ */
+
 bn::fixed_rect make_hitbox();
 
 /**

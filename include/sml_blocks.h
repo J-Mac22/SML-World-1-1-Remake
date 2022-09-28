@@ -129,7 +129,23 @@ bn::fixed_size make_block_dims(bn::fixed length, bn::fixed width);
 
 bn::fixed_rect make_hitbox();
 
-//Making top hitbox
+/**
+ NAME:
+ make_topHitBox
+
+ SYNOPSIS:
+ bn::fixed_rect make_topHitBox();
+
+ DESCRIPTION:
+ This function will create a hitbox for the top of the block.
+ 
+ AUTHOR:
+ Jack Machiaverna
+
+ RETURNS:
+ bn::fixed_rect 
+ */
+ 
 bn::fixed_rect make_topHitBox();
 
 /**
